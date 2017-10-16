@@ -7,7 +7,7 @@
 //
 import UIKit
 
-protocol UnderLineTextFieldDelegate: UITextFieldDelegate {
+public protocol UnderLineTextFieldDelegate: UITextFieldDelegate {
     func textFieldValidate(underLineTextField: UnderLineTextField) throws
     func textFieldTextChanged(underLineTextField: UnderLineTextField)
 }

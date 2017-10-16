@@ -304,7 +304,7 @@ public class UnderLineTextField: UITextField {
     }()
 
     /// current status of control
-    var status: Status = .inactive {
+    public var status: Status = .inactive {
         didSet {
             isErrorLabelVisibile = false
             switch status {
@@ -438,7 +438,7 @@ extension UnderLineTextField {
 
 extension UnderLineTextField {
     /// FromTextField statuses
-    enum Status {
+    public enum Status {
         /// when control is focused
         case active
         /// when control have errors
