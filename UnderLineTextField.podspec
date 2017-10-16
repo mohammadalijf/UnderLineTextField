@@ -10,7 +10,7 @@ s.description = "simple UITextField subclass with error and floating placeholder
 s.homepage = "https://github.com/mohammadalijf/UnderLineTextField"
 s.license = "MIT"
 s.author = "Mohammad Ali Jafarian"
-s.source = { :git => "",
+s.source = { :git => 'https://github.com/mohammadalijf/UnderLineTextField.git',
 :tag => "#{s.version}" }
-s.source_files = ":git => 'https://github.com/mohammadalijf/UnderLineTextField.git', :tag => s.version.to_s"
+s.source_files = 'UnderLineTextField/*.swift'
 end
