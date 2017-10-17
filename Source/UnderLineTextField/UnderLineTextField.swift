@@ -87,12 +87,26 @@ public class UnderLineTextField: UITextField {
         }
     }
 
+    @IBInspectable public var errorPlaceholderColor: UIColor = UIColor.red {
+        didSet {
+            if oldValue != errorLineColor {
+                setNeedsDisplay()
+            }
+        }
+    }
+
     //==========================
     // MARK: Placeholder Outlets
     //==========================
     /// text color of placeholder
     var placeholderColor: UIColor! {
         if isPlaceholderUp == true {
+            switch status {
+            case .error(_):
+                return errorPlaceholderColor
+            default:
+                break
+            }
             return activePlaceholderTextColor
         }
         return inactivePlaceholderTextColor
@@ -115,7 +129,7 @@ public class UnderLineTextField: UITextField {
             setNeedsDisplay()
         }
     }
-    
+
     override public var placeholder: String? {
         set {
             placeholderLabel.text = newValue
@@ -160,7 +174,9 @@ public class UnderLineTextField: UITextField {
     //========================
     // MARK: private properties
     //========================
-    
+
+    /// animation duration for changing states
+    public var animationDuration: Double = 0.3
     // flag for first initial of layout
     private var initialLayout: Bool = false
     /// constraints that will be activated upon initilization
@@ -176,7 +192,7 @@ public class UnderLineTextField: UITextField {
             setPlaceholderUp(isUp: isPlaceholderUp, isAnimated: true)
         }
     }
-    
+
     func setPlaceholderUp(isUp: Bool, isAnimated: Bool) {
         if isUp {
             var xTransform = placeholderLabel.bounds.width * 0.15
@@ -191,7 +207,7 @@ public class UnderLineTextField: UITextField {
                                   y: label.frame.origin.y * -1)
                 return
             }
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 label.transform = label.transform.scaledBy(x: 0.8, y: 0.8)
                 label.transform = label
                     .transform
@@ -204,22 +220,19 @@ public class UnderLineTextField: UITextField {
                 self.placeholderLabel.transform = .identity
                 return
             }
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: animationDuration, animations: {
                 self.placeholderLabel.transform = .identity
             })
+            animatePlaceholderColor()
         }
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0.4)
-        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
-        placeholderLabel.textColor = placeholderColor
-        CATransaction.commit()
+
     }
 
     /// should show error label
     private var isErrorLabelVisibile = false {
         didSet {
             if oldValue != isErrorLabelVisibile {
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: animationDuration, animations: {
                     self.errorLabel.alpha = self.isErrorLabelVisibile ? 1 : 0
                 })
             }
@@ -276,37 +289,36 @@ public class UnderLineTextField: UITextField {
     }()
 
     /// label for displaying error
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel()
+    private lazy var errorLabel: UIAnimatableLabel = {
+        let label = UIAnimatableLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = self.errorLineColor
-        label.numberOfLines = 1
         addSubview(label)
 
         if let fontName = font?.familyName, let size = font?.pointSize {
             label.font = UIFont(name: fontName, size: size * 0.8)
         }
         neededConstraint.append(NSLayoutConstraint(item: label,
-                                               attribute: .leading,
-                                               relatedBy: .equal,
-                                               toItem: self,
-                                               attribute: .leading,
-                                               multiplier: 1,
-                                               constant: 0))
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0))
         neededConstraint.append(NSLayoutConstraint(item: label,
-                                               attribute: .bottom,
-                                               relatedBy: .equal,
-                                               toItem: self,
-                                               attribute: .bottom,
-                                               multiplier: 1,
-                                               constant: 0))
+                                                   attribute: .bottom,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .bottom,
+                                                   multiplier: 1,
+                                                   constant: 0))
         neededConstraint.append(NSLayoutConstraint(item: label,
-                                               attribute: .trailing,
-                                               relatedBy: .equal,
-                                               toItem: self,
-                                               attribute: .trailing,
-                                               multiplier: 1,
-                                               constant: 0))
+                                                   attribute: .trailing,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .trailing,
+                                                   multiplier: 1,
+                                                   constant: 0))
         return label
     }()
 
@@ -317,19 +329,19 @@ public class UnderLineTextField: UITextField {
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         neededConstraint.append(NSLayoutConstraint(item: label,
-                                               attribute: .leading,
-                                               relatedBy: .equal,
-                                               toItem: self,
-                                               attribute: .leading,
-                                               multiplier: 1,
-                                               constant: 0))
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .leading,
+                                                   multiplier: 1,
+                                                   constant: 0))
         neededConstraint.append(NSLayoutConstraint(item: label,
-                                               attribute: .centerY,
-                                               relatedBy: .equal,
-                                               toItem: self,
-                                               attribute: .centerY,
-                                               multiplier: 1,
-                                               constant: 0))
+                                                   attribute: .centerY,
+                                                   relatedBy: .equal,
+                                                   toItem: self,
+                                                   attribute: .centerY,
+                                                   multiplier: 1,
+                                                   constant: 0))
         return label
     }()
 
@@ -341,6 +353,7 @@ public class UnderLineTextField: UITextField {
             case .error(let message):
                 errorLabel.text = message
                 isErrorLabelVisibile = true
+                animatePlaceholderColor()
             default:
                 break
             }
@@ -376,7 +389,7 @@ public class UnderLineTextField: UITextField {
         adjustHeight()
         errorLabel.alpha = 0
         initialLayout = true
-        
+
     }
 }
 
@@ -390,7 +403,7 @@ extension UnderLineTextField {
         if lineLayer.superlayer == nil {
             layer.addSublayer(lineLayer)
         }
-        lineLayer.strokeColor = lineColor.cgColor
+        aniamteLineColor()
         lineLayer.lineWidth = lineWidth
         placeholderLabel.textColor = placeholderColor
     }
@@ -436,7 +449,25 @@ extension UnderLineTextField {
         }
         heightConstraint.constant = height
         layoutIfNeeded()
-       
+
+    }
+
+    /// animate linecolor
+    private func aniamteLineColor() {
+        let animation = CABasicAnimation(keyPath: "strokeColor")
+        animation.duration = animationDuration
+        animation.isRemovedOnCompletion = true
+        lineLayer.add(animation, forKey: "strokeColorChange")
+        lineLayer.strokeColor = lineColor.cgColor
+    }
+
+    /// animate placeholderColor
+    private func animatePlaceholderColor() {
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(animationDuration)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        placeholderLabel.textColor = placeholderColor
+        CATransaction.commit()
     }
 
     /// create line bezier path
@@ -448,33 +479,34 @@ extension UnderLineTextField {
         path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
         return path
     }
+}
+
+//==============
+// MARK: - targets
+//==============
+@objc extension UnderLineTextField {
     /// clear text on control
-    @objc private func clearText() {
+    private func clearText() {
         guard delegate?.textFieldShouldClear?(self) ?? true else {
             return
         }
         text = ""
         self.isPlaceholderUp = false
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
-
     }
-}
 
-//==============
-// MARK: - targets
-//==============
-extension UnderLineTextField {
-    @objc private func formTextFieldDidBeginEditing() {
+    private func formTextFieldDidBeginEditing() {
         layoutIfNeeded()
         status = .active
     }
 
-    @objc private func formTextFieldDidEndEditing() {
+    private func formTextFieldDidEndEditing() {
         layoutIfNeeded()
+        status = .inactive
         try? (delegate as? UnderLineTextFieldDelegate)?.textFieldValidate(underLineTextField: self)
     }
 
-    @objc private func formTextFeildValueChanged() {
+    private func formTextFeildValueChanged() {
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
         guard let text = text, !text.isEmpty else {
             isPlaceholderUp = false
