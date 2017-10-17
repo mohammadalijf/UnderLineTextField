@@ -12,5 +12,6 @@ s.license = "MIT"
 s.author = "Mohammad Ali Jafarian"
 s.source = { :git => 'https://github.com/mohammadalijf/UnderLineTextField.git',
 :tag => "#{s.version}" }
-s.source_files = 'UnderLineTextField/*.swift'
+s.source_files = 'Source/UnderLineTextField/*.swift'
+s.resource = 'Source/UnderLineTextField/Supporting Files/Extera.xcassets'
 end

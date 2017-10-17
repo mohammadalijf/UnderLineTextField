@@ -1,0 +1,16 @@
+PODS:
+  - UnderLineTextField (1.0.1)
+
+DEPENDENCIES:
+  - UnderLineTextField (from `../`)
+
+EXTERNAL SOURCES:
+  UnderLineTextField:
+    :path: ../
+
+SPEC CHECKSUMS:
+  UnderLineTextField: e143a693c1a99efaab42fd4c5f4f2e8b3591013a
+
+PODFILE CHECKSUM: bd5b26c569d076de86a150d528ab419b10ba7a27
+
+COCOAPODS: 1.3.1
