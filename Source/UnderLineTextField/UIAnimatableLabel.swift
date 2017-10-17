@@ -59,7 +59,7 @@ class UIAnimatableLabel: UIView {
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
     }()
-    
+
     func setContentSize() {
         let newText: NSString = NSString(string: text ?? "")
         let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
@@ -69,7 +69,6 @@ class UIAnimatableLabel: UIView {
                                                 context: nil)
         widthConstraint.constant = boundingRect.width + 8
         heightConstraint.constant = boundingRect.height
-        print(font.pointSize, widthConstraint.constant)
         layoutIfNeeded()
     }
 
