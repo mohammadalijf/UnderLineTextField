@@ -1,0 +1,8 @@
+platform :ios, '9.0'
+
+target 'UnderLineTextField-Example' do
+  use_frameworks!
+
+  pod 'UnderLineTextField', :path => '../'
+
+end
