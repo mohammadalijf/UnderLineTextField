@@ -46,20 +46,20 @@ each textfield have four state
 You can easily change textfield state by setting **status**   
 
 ```swift
-    /// become inactive 
-    underLineTextField.status = .inactive
-    /// become active state
-    underLineTextField.status = .active
-    /// warning state
-    underLineTextField.status = .warning(message: "warning message")
-    /// error state
-    underLineTextField.status = .error(message: "error message")
+/// become inactive 
+underLineTextField.status = .inactive
+/// become active state
+underLineTextField.status = .active
+/// warning state
+underLineTextField.status = .warning(message: "warning message")
+/// error state
+underLineTextField.status = .error(message: "error message")
 ```
 
 you can ask textfield to validate user input by calling 
 
 ```swift
-    underLineTextField.validate()
+underLineTextField.validate()
 ```
 ### UnderLineTextFieldDelegate
 
@@ -78,5 +78,5 @@ func textFieldValidate(underLineTextField: UnderLineTextField) throws
 this func is called when text changes. or clear button is used.
 
 ```swift
-    func textFieldTextChanged(underLineTextField: UnderLineTextField)
+func textFieldTextChanged(underLineTextField: UnderLineTextField)
 ```
