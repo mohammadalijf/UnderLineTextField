@@ -8,8 +8,40 @@
 
 import UIKit
 
+/// Label that can animate text color
 @IBDesignable
-class UIAnimatableLabel: UIView {
+public class UIAnimatableLabel: UIView {
+    //============
+    // MARK: - inits
+    //============
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initial()
+    }
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initial()
+    }
+    private func initial() {
+        widthConstraint = NSLayoutConstraint(item: self,
+                                             attribute: .width,
+                                             relatedBy: .equal,
+                                             toItem: nil,
+                                             attribute: .notAnAttribute,
+                                             multiplier: 1,
+                                             constant: 0)
+        heightConstraint = NSLayoutConstraint(item: self,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: nil,
+                                              attribute: .notAnAttribute,
+                                              multiplier: 1,
+                                              constant: 0)
+        widthConstraint.priority = .defaultLow
+        heightConstraint.priority = .defaultLow
+        NSLayoutConstraint.activate([heightConstraint, widthConstraint])
+        setContentSize()
+    }
 
     //=================
     // MARK: - Variables
@@ -17,30 +49,8 @@ class UIAnimatableLabel: UIView {
     private var textFont = UIFont.systemFont(ofSize: 15)
     private var widthConstraint: NSLayoutConstraint!
     private var heightConstraint: NSLayoutConstraint!
-    private var dummyLabel: UILabel = {
-        UILabel()
-    }()
-    var text: String? {
-        set {
-            textLayer.string = newValue
-            setContentSize()
-        }
-        get {
-            return textLayer.string as? String
-        }
+    var animationDuration: Double = 0.4
 
-    }
-    var textColor: UIColor! {
-        set {
-            textLayer.foregroundColor = newValue.cgColor
-        }
-        get {
-            guard let cgColor = textLayer.foregroundColor else {
-                return .clear
-            }
-            return UIColor(cgColor: cgColor)
-        }
-    }
     var font: UIFont! {
         set {
             textFont = newValue
@@ -54,28 +64,48 @@ class UIAnimatableLabel: UIView {
         }
     }
 
-    var textLayer: CATextLayer = {
-        let textLayer = CATextLayer()
-        textLayer.contentsScale = UIScreen.main.scale
-        return textLayer
-    }()
+    //===================
+    // MARK: IBInspectable
+    //===================
+    @IBInspectable var text: String? {
+        set {
+            textLayer.string = newValue
+            setContentSize()
+        }
+        get {
+            return textLayer.string as? String
+        }
 
-    func setContentSize() {
-        let newText: NSString = NSString(string: text ?? "")
-        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-        let boundingRect = newText.boundingRect(with: constraintRect,
-                                                options: .usesLineFragmentOrigin,
-                                                attributes: [.font: font],
-                                                context: nil)
-        widthConstraint.constant = boundingRect.width + 8
-        heightConstraint.constant = boundingRect.height
-        layoutIfNeeded()
+    }
+    @IBInspectable var textColor: UIColor! {
+        set {
+            textLayer.foregroundColor = newValue.cgColor
+        }
+        get {
+            guard let cgColor = textLayer.foregroundColor else {
+                return .clear
+            }
+            return UIColor(cgColor: cgColor)
+        }
     }
 
+    //=====================
+    // MARK: Lazy Loadings
+    //=====================
+    lazy var textLayer: VerticalAlignedTextLayer = {
+        let textLayer = VerticalAlignedTextLayer()
+        textLayer.contentsScale = UIScreen.main.scale
+        textLayer.truncationMode = kCATruncationEnd
+        layer.addSublayer(textLayer)
+        return textLayer
+    }()
+}
+
+extension UIAnimatableLabel {
     //=================
     // MARK: - Overrides
     //=================
-    override var backgroundColor: UIColor? {
+    override public var backgroundColor: UIColor? {
         set {
             super.backgroundColor = newValue
             textLayer.backgroundColor = newValue?.cgColor
@@ -85,48 +115,47 @@ class UIAnimatableLabel: UIView {
         }
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initial()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initial()
-    }
-
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         textLayer.frame = self.bounds
     }
 
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         return nil
     }
-    override func prepareForInterfaceBuilder() {
+
+    override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         initial()
     }
+}
 
-    //===========================
-    // MARK: - Methods & Selectors
-    //===========================
-    private func initial() {
-        widthConstraint = NSLayoutConstraint(item: self,
-                                             attribute: .width,
-                                             relatedBy: .equal,
-                                             toItem: nil,
-                                             attribute: .notAnAttribute,
-                                             multiplier: 1,
-                                             constant: dummyLabel.bounds.width)
-        heightConstraint = NSLayoutConstraint(item: self,
-                                              attribute: .height,
-                                              relatedBy: .equal,
-                                              toItem: nil,
-                                              attribute: .notAnAttribute,
-                                              multiplier: 1,
-                                              constant: dummyLabel.bounds.height)
-        self.layer.addSublayer(textLayer)
-        NSLayoutConstraint.activate([heightConstraint, widthConstraint])
+extension UIAnimatableLabel {
+    //================
+    // MARK: - Methods
+    //================
+    func setContentSize() {
+        let newText: NSString = NSString(string: text ?? "")
+        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+        let boundingRect = newText.boundingRect(with: constraintRect,
+                                                options: .usesLineFragmentOrigin,
+                                                attributes: [.font: font],
+                                                context: nil)
+        widthConstraint.constant = boundingRect.width + 8
+        heightConstraint.constant = boundingRect.height + 8
+        layoutIfNeeded()
+    }
+
+    func changeText(toColor color: UIColor, animated: Bool = true) {
+        guard animated else {
+            textColor = color
+            return
+        }
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(animationDuration)
+        CATransaction
+            .setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        textColor = color
+        CATransaction.commit()
     }
 }

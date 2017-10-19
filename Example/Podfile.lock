@@ -1,5 +1,5 @@
 PODS:
-  - UnderLineTextField (1.0.1)
+  - UnderLineTextField (1.1.0)
 
 DEPENDENCIES:
   - UnderLineTextField (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  UnderLineTextField: e143a693c1a99efaab42fd4c5f4f2e8b3591013a
+  UnderLineTextField: a188dbf5d84012e6a8da116a7bacffdad5ec35b7
 
 PODFILE CHECKSUM: bd5b26c569d076de86a150d528ab419b10ba7a27
 

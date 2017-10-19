@@ -15,6 +15,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var normalTextField: UnderLineTextField!
     @IBOutlet weak var prefilledTextfield: UnderLineTextField!
+    @IBOutlet weak var warningTextField: UnderLineTextField!
     @IBOutlet weak var complainTextfield: UnderLineTextField!
     @IBOutlet weak var bigFontTextfield: UnderLineTextField!
     @IBOutlet weak var clearButtonTextfield: UnderLineTextField!
@@ -39,9 +40,14 @@ class ViewController: UIViewController {
 extension ViewController: UnderLineTextFieldDelegate {
 
     func textFieldValidate(underLineTextField: UnderLineTextField) throws {
-        if underLineTextField == complainTextfield {
-            underLineTextField.status = .error(message: "I will allways complain no mater what")
+        switch underLineTextField {
+        case complainTextfield:
+            underLineTextField.status = .error(message: "I will always complain no mater what")
             throw FormValidationError.noReason
+        case warningTextField:
+            underLineTextField.status = .warning(message: "i will always warn you no mather what")
+        default:
+            break
         }
     }
 
@@ -50,6 +56,8 @@ extension ViewController: UnderLineTextFieldDelegate {
         case normalTextField:
             prefilledTextfield.becomeFirstResponder()
         case prefilledTextfield:
+            warningTextField.becomeFirstResponder()
+        case warningTextField:
             complainTextfield.becomeFirstResponder()
         case complainTextfield:
             clearButtonTextfield.becomeFirstResponder()

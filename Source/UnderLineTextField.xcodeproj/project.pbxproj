@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843FDC2D1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */; };
+		84F250E61F98C108002DF707 /* VerticalAlignmentTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */; };
 		84F8A55C1F949AFC00985BF5 /* UnderLineTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F8A5521F949AFC00985BF5 /* UnderLineTextField.framework */; };
 		84F8A5611F949AFC00985BF5 /* UnderLineTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8A5601F949AFC00985BF5 /* UnderLineTextFieldTests.swift */; };
 		84F8A5631F949AFC00985BF5 /* UnderLineTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F8A5551F949AFC00985BF5 /* UnderLineTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldStatus.swift; sourceTree = "<group>"; };
+		84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignmentTextLayer.swift; sourceTree = "<group>"; };
 		84F8A5521F949AFC00985BF5 /* UnderLineTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UnderLineTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F8A5551F949AFC00985BF5 /* UnderLineTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnderLineTextField.h; sourceTree = "<group>"; };
 		84F8A5561F949AFC00985BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,7 +83,9 @@
 		84F8A5541F949AFC00985BF5 /* UnderLineTextField */ = {
 			isa = PBXGroup;
 			children = (
+				84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */,
 				84F8A56C1F949B6800985BF5 /* UnderLineTextField.swift */,
+				843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */,
 				84F8A56E1F949B7200985BF5 /* UnderLineTextFieldDelegate.swift */,
 				84F8A5701F949B7A00985BF5 /* UIAnimatableLabel.swift */,
 				84F8A5761F949EDD00985BF5 /* Supporting Files */,
@@ -218,9 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F250E61F98C108002DF707 /* VerticalAlignmentTextLayer.swift in Sources */,
 				84F8A56F1F949B7200985BF5 /* UnderLineTextFieldDelegate.swift in Sources */,
 				84F8A5711F949B7A00985BF5 /* UIAnimatableLabel.swift in Sources */,
 				84F8A56D1F949B6800985BF5 /* UnderLineTextField.swift in Sources */,
+				843FDC2D1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
