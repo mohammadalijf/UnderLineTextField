@@ -1,6 +1,8 @@
 # UnderLineTextField
 Simple UITextfield Subclass with state
 
+![demo](https://github.com/mohammadalijf/UnderLineTextField/raw/master/src/demo.gif "Example App")
+
 * [Installation](#installation)
 * [How It Works](#how-it-works)
 
