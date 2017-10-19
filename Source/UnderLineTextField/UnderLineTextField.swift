@@ -517,6 +517,11 @@ extension UnderLineTextField {
         path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
         return path
     }
+
+    public func validate() throws {
+        try (delegate as? UnderLineTextFieldDelegate)?
+            .textFieldValidate(underLineTextField: self)
+    }
 }
 
 //=================
@@ -541,7 +546,7 @@ extension UnderLineTextField {
     private func formTextFieldDidEndEditing() {
         layoutIfNeeded()
         status = .inactive
-        try? (delegate as? UnderLineTextFieldDelegate)?.textFieldValidate(underLineTextField: self)
+        try? validate()
     }
     /// textfield value changed
     private func formTextFeildValueChanged() {
