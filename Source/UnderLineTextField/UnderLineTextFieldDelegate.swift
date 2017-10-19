@@ -8,7 +8,9 @@
 import UIKit
 
 public protocol UnderLineTextFieldDelegate: UITextFieldDelegate {
+    /// validate textfield and set status
     func textFieldValidate(underLineTextField: UnderLineTextField) throws
+    /// called when textfield value changed
     func textFieldTextChanged(underLineTextField: UnderLineTextField)
 }
 

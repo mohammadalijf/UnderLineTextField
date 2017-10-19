@@ -5,7 +5,7 @@
   },
   "requires_arc": true,
   "module_name": "UnderLineTextField",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "summary": "simple UITextField subclass with error and floating placeholder",
   "description": "simple UITextField subclass with error and floating placeholder",
   "homepage": "https://github.com/mohammadalijf/UnderLineTextField",
@@ -13,7 +13,7 @@
   "authors": "Mohammad Ali Jafarian",
   "source": {
     "git": "https://github.com/mohammadalijf/UnderLineTextField.git",
-    "tag": "1.0.1"
+    "tag": "1.1.0"
   },
   "source_files": "Source/UnderLineTextField/*.swift",
   "resources": "Source/UnderLineTextField/Supporting Files/Extera.xcassets"
