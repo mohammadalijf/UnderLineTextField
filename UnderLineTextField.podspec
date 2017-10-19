@@ -4,11 +4,11 @@ s.platform = :ios
 s.ios.deployment_target	= "9.0"
 s.requires_arc = true
 s.module_name = "UnderLineTextField"
-s.version = "1.0.2"
-s.summary = "simple UITextField subclass with error and floating placeholder"
-s.description = "simple UITextField subclass with error and floating placeholder"
+s.version = "1.1.0"
+s.summary = "Simple UITextfield Subclass with state"
+s.description = "simple UITextField subclass with state and floating placeholder"
 s.homepage = "https://github.com/mohammadalijf/UnderLineTextField"
-s.license = "MIT"
+s.license = { :type => 'MIT', :file => 'LICENSE' }
 s.author = "Mohammad Ali Jafarian"
 s.source = { :git => 'https://github.com/mohammadalijf/UnderLineTextField.git',
 :tag => "#{s.version}" }
