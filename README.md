@@ -13,7 +13,7 @@ You can use [cocoapods](https://cocoapods.org)  to add UnderLineTextField to you
 
 ```
 target 'MyApp' do
-  pod 'UnderLineTextField', '~> 1.1'
+  pod 'UnderLineTextField', '~> 2.0'
 end
 ```
 
@@ -43,17 +43,26 @@ each textfield have four state
 
 > by default textfield have .inactive state
 
-You can easily change textfield state by setting **status**   
+textfield have diffrent kind of UnderLineTextFieldValidateType. each time tells textfield when call validate().
 
+* onFly
+
+    as soon as textfield value changes
+* afterEdit
+
+    as soon as textfield didEndEditing
+* onCommit
+
+    manualy gets validate by user
+* always
+
+    alway validate textfield. when become beginEditing, when value changes, when didEndEditing
+
+> by default value is .afterEdit
+
+you can change validation type by setting validationType
 ```swift
-/// become inactive 
-underLineTextField.status = .inactive
-/// become active state
-underLineTextField.status = .active
-/// warning state
-underLineTextField.status = .warning(message: "warning message")
-/// error state
-underLineTextField.status = .error(message: "error message")
+ underLineTextField.validationType = .always
 ```
 
 you can ask textfield to validate user input by calling 
@@ -68,10 +77,22 @@ Also you have **UnderLineTextFieldDelegate** to help you with your textfield. wh
 
 * textFieldValidate
 
-this func is called whenever textfield become inactive or you ask the textfield to **validate()** user input. you usually want to set warning or error state in here.
+this func is called whenever you ask the textfield to **validate()** user input. you usually want to set warning or error state in here.
 
 ```swift
 func textFieldValidate(underLineTextField: UnderLineTextField) throws
+```
+
+you can either throw warrning or errors
+
+```swift
+func textFieldValidate(underLineTextField: UnderLineTextField) throws {
+    throw UnderLineTextFieldErrors
+                    .error(message: "error message")
+    // or
+    throw UnderLineTextFieldErrors
+                    .warning(message: "warning message")
+}
 ```
 
 * textFieldTextChanged
