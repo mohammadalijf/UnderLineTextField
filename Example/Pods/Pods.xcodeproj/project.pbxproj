@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08EF9DACF19F2B95EF84C806EB076AAF /* UnderLineTextFieldStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564F31CDAF68A36E1D0E56F36134BCDE /* UnderLineTextFieldStatus.swift */; };
-		16067C86E1CCB3DE606E19CCD395DF0D /* UnderLineTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6552EEDB0EF8D93734340DBF7DA8FC /* UnderLineTextFieldDelegate.swift */; };
-		21A9FC3EA25B3CE427B0E4D20E9E1B6A /* UnderLineTextFieldValidateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F05107D289238EE41BE050C3E74D3B /* UnderLineTextFieldValidateType.swift */; };
-		2619387244B2AFF64EA829EC95ED3B98 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480316DC1A3345B17300AE919788F439 /* UnderLineTextField.swift */; };
+		04793465D024CBEB80345668162DDDF5 /* UnderLineTextFieldFocusStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF683C7DF7F667D0BF0FCA4EBA65E3E /* UnderLineTextFieldFocusStatus.swift */; };
+		14B93076178CDE0968EFAA810F722036 /* UnderLineTextField-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB322ABC7CF1B3905946EAB1B7AF53 /* UnderLineTextField-dummy.m */; };
 		2814E4255198B28253A69B53EACCD2BA /* Pods-UnderLineTextField-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72ECECCAE5008F45D5691BEB1D8C9B1C /* Pods-UnderLineTextField-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F1B185D1E73CF5ED866A2659D18BC9D /* UIAnimatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E36C6C54153562829DF662D35EEA /* UIAnimatableLabel.swift */; };
-		4BF2750BF7C48C2E3472B5AA233D4172 /* UnderLineTextField-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E811DA76A2156DB5CCA27EE19A44635D /* UnderLineTextField-dummy.m */; };
+		28B1C407B07577B004FEF379C1E8958A /* UnderLineTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271E22ED537AF16F1CA0AA3171A92DAD /* UnderLineTextFieldDelegate.swift */; };
+		2FB24691E40B8A6FC7762D6CE747A21C /* UnderLineTextFieldContentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F1FC679215397144D51F008932AB9 /* UnderLineTextFieldContentStatus.swift */; };
+		2FF40480940B529245F28132420BBD9C /* UnderLineTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E71E09B58239410D8A014CD62C76681 /* UnderLineTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		55463306914DA5FC497728B83573D968 /* VerticalAlignmentTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90200C42D2DE0FBF3201845C2AD62B3D /* VerticalAlignmentTextLayer.swift */; };
+		6A82296D35273634A218C7052CC7A209 /* UIAnimatableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EE6CE92233344B532EF795E126D01 /* UIAnimatableLabel.swift */; };
 		711A27DA323EF872B11BA6A60AFC8D9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		824FB0595B4B2C347194627BEF995E27 /* Pods-UnderLineTextField-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 758B0B442620F0575576C9781A0DBD8D /* Pods-UnderLineTextField-Example-dummy.m */; };
+		B2D2C487218C1B48594928B721A8908D /* UnderLineTextField-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A4BCF575353CF1B74956999ED346CF /* UnderLineTextField-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8D8CB01585501EAB164EF4255072A2F /* UnderLineTextFieldValidateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C4AC610A50E602AE588F6B0E4FBFEF /* UnderLineTextFieldValidateType.swift */; };
+		BC151A09B5DB7528C87AE9BDCDEFD27C /* UnderLineTextFieldStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD565315F65CDDD2E24DAFBDF1968BC /* UnderLineTextFieldStatus.swift */; };
 		C8D743481265C284A01A4EEC63DBA1E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		E39E6539A9E0326C276EF7C20625692D /* UnderLineTextField-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 905548223509273123C5431BFB5BD648 /* UnderLineTextField-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F4DDB2E52F0A047FA3A59C3C5B999604 /* Extera.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCE07CDFDE97CFF043232B03365ECC3A /* Extera.xcassets */; };
-		F69AC2E553A0DE5546567F9C786D4621 /* VerticalAlignmentTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46C914B42125CFFF747F0F57A7818A /* VerticalAlignmentTextLayer.swift */; };
+		E2B63DCEEBC4E08DAA3E756BE2FB9E08 /* UnderLineTextFieldErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EB6103B38C5A0B77F737DC720AD015 /* UnderLineTextFieldErrors.swift */; };
+		F4DDB2E52F0A047FA3A59C3C5B999604 /* Extera.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AA4434BF0A8F864953694FB7A690552 /* Extera.xcassets */; };
+		FBFFB63D9E63CB1563B386461387C83D /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E49A6813FDE8E3C6A1359D53BC800D /* UnderLineTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,33 +37,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B46C914B42125CFFF747F0F57A7818A /* VerticalAlignmentTextLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalAlignmentTextLayer.swift; path = Source/UnderLineTextField/VerticalAlignmentTextLayer.swift; sourceTree = "<group>"; };
+		0E432CD8D683E718106EBE6B34610B34 /* UnderLineTextField.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = UnderLineTextField.modulemap; sourceTree = "<group>"; };
+		13E49A6813FDE8E3C6A1359D53BC800D /* UnderLineTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnderLineTextField.swift; path = Source/UnderLineTextField/UnderLineTextField.swift; sourceTree = "<group>"; };
+		15EB322ABC7CF1B3905946EAB1B7AF53 /* UnderLineTextField-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UnderLineTextField-dummy.m"; sourceTree = "<group>"; };
+		19EB6103B38C5A0B77F737DC720AD015 /* UnderLineTextFieldErrors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldErrors.swift; sourceTree = "<group>"; };
+		1AF683C7DF7F667D0BF0FCA4EBA65E3E /* UnderLineTextFieldFocusStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldFocusStatus.swift; sourceTree = "<group>"; };
 		1B72EF28D070B1C1D2C47CAE175F5F60 /* Pods-UnderLineTextField-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UnderLineTextField-Example.release.xcconfig"; sourceTree = "<group>"; };
+		1E6F1FC679215397144D51F008932AB9 /* UnderLineTextFieldContentStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldContentStatus.swift; sourceTree = "<group>"; };
+		271E22ED537AF16F1CA0AA3171A92DAD /* UnderLineTextFieldDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldDelegate.swift; sourceTree = "<group>"; };
 		29E829056DF2D5CA829C9C77D70B6280 /* Pods-UnderLineTextField-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-UnderLineTextField-Example.modulemap"; sourceTree = "<group>"; };
-		2A12D5F31C984D75B9EEFF322D35E326 /* UnderLineTextField.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = UnderLineTextField.modulemap; sourceTree = "<group>"; };
-		2CE7E36C6C54153562829DF662D35EEA /* UIAnimatableLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIAnimatableLabel.swift; path = Source/UnderLineTextField/UIAnimatableLabel.swift; sourceTree = "<group>"; };
-		3A6552EEDB0EF8D93734340DBF7DA8FC /* UnderLineTextFieldDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnderLineTextFieldDelegate.swift; path = Source/UnderLineTextField/UnderLineTextFieldDelegate.swift; sourceTree = "<group>"; };
+		30A4BCF575353CF1B74956999ED346CF /* UnderLineTextField-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnderLineTextField-umbrella.h"; sourceTree = "<group>"; };
+		31C4AC610A50E602AE588F6B0E4FBFEF /* UnderLineTextFieldValidateType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldValidateType.swift; sourceTree = "<group>"; };
 		3FE4C6A77B23A9DAC621E345E2DD0332 /* Pods_UnderLineTextField_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_UnderLineTextField_Example.framework; path = "Pods-UnderLineTextField-Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4402A47783C6ACAA44C9E3A32A317C7A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		480316DC1A3345B17300AE919788F439 /* UnderLineTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnderLineTextField.swift; path = Source/UnderLineTextField/UnderLineTextField.swift; sourceTree = "<group>"; };
-		5190845BFF0A9A021CB2E0728E987DF9 /* UnderLineTextField.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UnderLineTextField.xcconfig; sourceTree = "<group>"; };
 		5474202B89C1E68D413A4090786C20BF /* Pods-UnderLineTextField-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-UnderLineTextField-Example-frameworks.sh"; sourceTree = "<group>"; };
-		564F31CDAF68A36E1D0E56F36134BCDE /* UnderLineTextFieldStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnderLineTextFieldStatus.swift; path = Source/UnderLineTextField/UnderLineTextFieldStatus.swift; sourceTree = "<group>"; };
+		548D97F59DB32084B22AE52B1130E3F7 /* UnderLineTextField.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UnderLineTextField.xcconfig; sourceTree = "<group>"; };
 		64217C669FE051A1DE29939C23D140E7 /* Pods-UnderLineTextField-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UnderLineTextField-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		68F05107D289238EE41BE050C3E74D3B /* UnderLineTextFieldValidateType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnderLineTextFieldValidateType.swift; path = Source/UnderLineTextField/UnderLineTextFieldValidateType.swift; sourceTree = "<group>"; };
+		6AA4434BF0A8F864953694FB7A690552 /* Extera.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Extera.xcassets; path = "Source/UnderLineTextField/Supporting Files/Extera.xcassets"; sourceTree = "<group>"; };
 		72ECECCAE5008F45D5691BEB1D8C9B1C /* Pods-UnderLineTextField-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-UnderLineTextField-Example-umbrella.h"; sourceTree = "<group>"; };
 		758B0B442620F0575576C9781A0DBD8D /* Pods-UnderLineTextField-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-UnderLineTextField-Example-dummy.m"; sourceTree = "<group>"; };
-		7CE7978477CB274EA014E513BC683397 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A07E5D086C4E813C7C1D802299BA520 /* Pods-UnderLineTextField-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UnderLineTextField-Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		8A43C8418C7F09B035B96B579513683B /* UnderLineTextField-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnderLineTextField-prefix.pch"; sourceTree = "<group>"; };
-		905548223509273123C5431BFB5BD648 /* UnderLineTextField-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnderLineTextField-umbrella.h"; sourceTree = "<group>"; };
+		90200C42D2DE0FBF3201845C2AD62B3D /* VerticalAlignmentTextLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VerticalAlignmentTextLayer.swift; path = Source/UnderLineTextField/VerticalAlignmentTextLayer.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E5A2BF006767081837265930B5E9F96 /* Pods-UnderLineTextField-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-UnderLineTextField-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9E71E09B58239410D8A014CD62C76681 /* UnderLineTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UnderLineTextField.h; sourceTree = "<group>"; };
+		C60EE6CE92233344B532EF795E126D01 /* UIAnimatableLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIAnimatableLabel.swift; path = Source/UnderLineTextField/UIAnimatableLabel.swift; sourceTree = "<group>"; };
+		C712BA584954C082E2DAF7BD8D813629 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD6DDF5F0EAD03486A3B0761D4512468 /* Pods-UnderLineTextField-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-UnderLineTextField-Example-resources.sh"; sourceTree = "<group>"; };
+		CDD565315F65CDDD2E24DAFBDF1968BC /* UnderLineTextFieldStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldStatus.swift; sourceTree = "<group>"; };
+		D3AC00047303D4C6CA33C1214FB3A19D /* UnderLineTextField-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UnderLineTextField-prefix.pch"; sourceTree = "<group>"; };
 		E5AEF3EA0E0467A39DFE8A3BA0168DB9 /* UnderLineTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UnderLineTextField.framework; path = UnderLineTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E811DA76A2156DB5CCA27EE19A44635D /* UnderLineTextField-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UnderLineTextField-dummy.m"; sourceTree = "<group>"; };
-		FCE07CDFDE97CFF043232B03365ECC3A /* Extera.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Extera.xcassets; path = "Source/UnderLineTextField/Supporting Files/Extera.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0179BA50C420DEB2B6E080D3DABA7054 /* Structs and Enums */ = {
+			isa = PBXGroup;
+			children = (
+				1E6F1FC679215397144D51F008932AB9 /* UnderLineTextFieldContentStatus.swift */,
+				19EB6103B38C5A0B77F737DC720AD015 /* UnderLineTextFieldErrors.swift */,
+				1AF683C7DF7F667D0BF0FCA4EBA65E3E /* UnderLineTextFieldFocusStatus.swift */,
+				CDD565315F65CDDD2E24DAFBDF1968BC /* UnderLineTextFieldStatus.swift */,
+				31C4AC610A50E602AE588F6B0E4FBFEF /* UnderLineTextFieldValidateType.swift */,
+			);
+			name = "Structs and Enums";
+			path = "Source/UnderLineTextField/Structs and Enums";
+			sourceTree = "<group>";
+		};
 		18B821EF4D84073571669CC095C3A343 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +112,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C6882169BE82B3EBE51FE087A908A74 /* Resources */ = {
+		23DB0071E3246137F77788DEA2D74C88 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FCE07CDFDE97CFF043232B03365ECC3A /* Extera.xcassets */,
+				C712BA584954C082E2DAF7BD8D813629 /* Info.plist */,
+				0E432CD8D683E718106EBE6B34610B34 /* UnderLineTextField.modulemap */,
+				548D97F59DB32084B22AE52B1130E3F7 /* UnderLineTextField.xcconfig */,
+				15EB322ABC7CF1B3905946EAB1B7AF53 /* UnderLineTextField-dummy.m */,
+				D3AC00047303D4C6CA33C1214FB3A19D /* UnderLineTextField-prefix.pch */,
+				30A4BCF575353CF1B74956999ED346CF /* UnderLineTextField-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/UnderLineTextField";
+			sourceTree = "<group>";
+		};
+		74C52514814987276A0AC81F96C6222F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6AA4434BF0A8F864953694FB7A690552 /* Extera.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -110,18 +145,13 @@
 			);
 			sourceTree = "<group>";
 		};
-		8AF4500C9CDC87554B4D2CD080A16141 /* Support Files */ = {
+		A1C757F14E1C2DC2ADC68B1C6FA3D6D7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				7CE7978477CB274EA014E513BC683397 /* Info.plist */,
-				2A12D5F31C984D75B9EEFF322D35E326 /* UnderLineTextField.modulemap */,
-				5190845BFF0A9A021CB2E0728E987DF9 /* UnderLineTextField.xcconfig */,
-				E811DA76A2156DB5CCA27EE19A44635D /* UnderLineTextField-dummy.m */,
-				8A43C8418C7F09B035B96B579513683B /* UnderLineTextField-prefix.pch */,
-				905548223509273123C5431BFB5BD648 /* UnderLineTextField-umbrella.h */,
+				271E22ED537AF16F1CA0AA3171A92DAD /* UnderLineTextFieldDelegate.swift */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/UnderLineTextField";
+			name = Protocols;
+			path = Source/UnderLineTextField/Protocols;
 			sourceTree = "<group>";
 		};
 		AF1CA7F85804DFA25B9F263BF8D0A7E3 /* Pods-UnderLineTextField-Example */ = {
@@ -158,22 +188,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C74BDBBC4275DF393CDFEA96D7063320 /* UnderLineTextField */ = {
-			isa = PBXGroup;
-			children = (
-				2CE7E36C6C54153562829DF662D35EEA /* UIAnimatableLabel.swift */,
-				480316DC1A3345B17300AE919788F439 /* UnderLineTextField.swift */,
-				3A6552EEDB0EF8D93734340DBF7DA8FC /* UnderLineTextFieldDelegate.swift */,
-				564F31CDAF68A36E1D0E56F36134BCDE /* UnderLineTextFieldStatus.swift */,
-				68F05107D289238EE41BE050C3E74D3B /* UnderLineTextFieldValidateType.swift */,
-				0B46C914B42125CFFF747F0F57A7818A /* VerticalAlignmentTextLayer.swift */,
-				4C6882169BE82B3EBE51FE087A908A74 /* Resources */,
-				8AF4500C9CDC87554B4D2CD080A16141 /* Support Files */,
-			);
-			name = UnderLineTextField;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,30 +196,56 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		DC038C0EEF925AFB5AFF629CBAC021D8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E71E09B58239410D8A014CD62C76681 /* UnderLineTextField.h */,
+			);
+			name = "Supporting Files";
+			path = "Source/UnderLineTextField/Supporting Files";
+			sourceTree = "<group>";
+		};
 		E8EC5F701A0187F87E41B851CBA22728 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C74BDBBC4275DF393CDFEA96D7063320 /* UnderLineTextField */,
+				FD0EA0BB88139F45BADCF8C31A708356 /* UnderLineTextField */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		FD0EA0BB88139F45BADCF8C31A708356 /* UnderLineTextField */ = {
+			isa = PBXGroup;
+			children = (
+				C60EE6CE92233344B532EF795E126D01 /* UIAnimatableLabel.swift */,
+				13E49A6813FDE8E3C6A1359D53BC800D /* UnderLineTextField.swift */,
+				90200C42D2DE0FBF3201845C2AD62B3D /* VerticalAlignmentTextLayer.swift */,
+				A1C757F14E1C2DC2ADC68B1C6FA3D6D7 /* Protocols */,
+				74C52514814987276A0AC81F96C6222F /* Resources */,
+				0179BA50C420DEB2B6E080D3DABA7054 /* Structs and Enums */,
+				23DB0071E3246137F77788DEA2D74C88 /* Support Files */,
+				DC038C0EEF925AFB5AFF629CBAC021D8 /* Supporting Files */,
+			);
+			name = UnderLineTextField;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0DAC12F81DB82DFA8A443EE863C99009 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2D2C487218C1B48594928B721A8908D /* UnderLineTextField-umbrella.h in Headers */,
+				2FF40480940B529245F28132420BBD9C /* UnderLineTextField.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		571B9370671034648B032C8A3BB3C747 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2814E4255198B28253A69B53EACCD2BA /* Pods-UnderLineTextField-Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B1D28CC3E2E421A252254583BD2188A9 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E39E6539A9E0326C276EF7C20625692D /* UnderLineTextField-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,10 +274,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37FA95B5CEC8FE9F2AD896C5DE14E53E /* Build configuration list for PBXNativeTarget "UnderLineTextField" */;
 			buildPhases = (
-				6CC012B081924B99900574BC3BC02011 /* Sources */,
+				E62A87905101A577E43BF5049D899F31 /* Sources */,
 				EBA680024F901B177FD974928ADF95BB /* Frameworks */,
+				0DAC12F81DB82DFA8A443EE863C99009 /* Headers */,
 				38D4DEF202CD8D84A38C9C560C2E671E /* Resources */,
-				B1D28CC3E2E421A252254583BD2188A9 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -295,17 +335,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CC012B081924B99900574BC3BC02011 /* Sources */ = {
+		E62A87905101A577E43BF5049D899F31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F1B185D1E73CF5ED866A2659D18BC9D /* UIAnimatableLabel.swift in Sources */,
-				4BF2750BF7C48C2E3472B5AA233D4172 /* UnderLineTextField-dummy.m in Sources */,
-				2619387244B2AFF64EA829EC95ED3B98 /* UnderLineTextField.swift in Sources */,
-				16067C86E1CCB3DE606E19CCD395DF0D /* UnderLineTextFieldDelegate.swift in Sources */,
-				08EF9DACF19F2B95EF84C806EB076AAF /* UnderLineTextFieldStatus.swift in Sources */,
-				21A9FC3EA25B3CE427B0E4D20E9E1B6A /* UnderLineTextFieldValidateType.swift in Sources */,
-				F69AC2E553A0DE5546567F9C786D4621 /* VerticalAlignmentTextLayer.swift in Sources */,
+				6A82296D35273634A218C7052CC7A209 /* UIAnimatableLabel.swift in Sources */,
+				14B93076178CDE0968EFAA810F722036 /* UnderLineTextField-dummy.m in Sources */,
+				FBFFB63D9E63CB1563B386461387C83D /* UnderLineTextField.swift in Sources */,
+				2FB24691E40B8A6FC7762D6CE747A21C /* UnderLineTextFieldContentStatus.swift in Sources */,
+				28B1C407B07577B004FEF379C1E8958A /* UnderLineTextFieldDelegate.swift in Sources */,
+				E2B63DCEEBC4E08DAA3E756BE2FB9E08 /* UnderLineTextFieldErrors.swift in Sources */,
+				04793465D024CBEB80345668162DDDF5 /* UnderLineTextFieldFocusStatus.swift in Sources */,
+				BC151A09B5DB7528C87AE9BDCDEFD27C /* UnderLineTextFieldStatus.swift in Sources */,
+				B8D8CB01585501EAB164EF4255072A2F /* UnderLineTextFieldValidateType.swift in Sources */,
+				55463306914DA5FC497728B83573D968 /* VerticalAlignmentTextLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +400,7 @@
 		};
 		3A3214C50B6AD8BF64DD508E219B1598 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5190845BFF0A9A021CB2E0728E987DF9 /* UnderLineTextField.xcconfig */;
+			baseConfigurationReference = 548D97F59DB32084B22AE52B1130E3F7 /* UnderLineTextField.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -388,7 +431,7 @@
 		};
 		695E29255D7F15E2A1801BFD03444FF0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5190845BFF0A9A021CB2E0728E987DF9 /* UnderLineTextField.xcconfig */;
+			baseConfigurationReference = 548D97F59DB32084B22AE52B1130E3F7 /* UnderLineTextField.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "UnderLineTextField.h"
 
 FOUNDATION_EXPORT double UnderLineTextFieldVersionNumber;
 FOUNDATION_EXPORT const unsigned char UnderLineTextFieldVersionString[];
