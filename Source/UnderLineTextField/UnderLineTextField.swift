@@ -34,76 +34,76 @@ public class UnderLineTextField: UITextField {
         errorLabel.text = ""
         addTarget(self, action: #selector(self.formTextFieldDidBeginEditing), for: .editingDidBegin)
         addTarget(self, action: #selector(self.formTextFieldDidEndEditing), for: .editingDidEnd)
-        addTarget(self, action: #selector(self.formTextFeildValueChanged), for: [.editingChanged, .valueChanged])
+        addTarget(self, action: #selector(self.formTextFieldValueChanged), for: [.editingChanged, .valueChanged])
         NSLayoutConstraint.activate(neededConstraint)
         adjustHeight()
         errorLabel.alpha = 0
-        initialLayout = true
+        text = super.text
     }
 
     //=================
     // MARK: - Variables
     //=================
-    /// current status of control
-    public var status: UnderLineTextFieldStatus = .inactive {
+    /// current status of control (can be normal, warning, error)
+    open var status: UnderLineTextFieldStatus = .normal {
         didSet {
             switch status {
-            case .error(let message), .warning(let message):
-                errorLabel.text = message
-                isErrorLabelVisibile = true
-                animatePlaceholderColor()
+            case .error, .warning:
+                changeErrorLabelVisibilty(visible: true)
             default:
-                isErrorLabelVisibile = false
+                changeErrorLabelVisibilty(visible: false)
             }
             setNeedsDisplay()
         }
     }
+
+    /// current focus status of textfield (can be active, inactive)
+    open var focusStatus: UnderLineTextFieldFocusStatus = .inactive {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
+    /// current content status of textfield (can be empty, filled)
+    open var contentStatus: UnderLineTextFieldContentStatus = .empty {
+        didSet {
+            guard contentStatus != oldValue else {
+                return
+            }
+            if contentStatus == .empty {
+                setPlaceholderPlace(isUp: false, isAnimated: true)
+            } else {
+                setPlaceholderPlace(isUp: true, isAnimated: true)
+            }
+            setNeedsDisplay()
+        }
+    }
+
+    /// validation time type
+    open var validationType: UnderLineTextFieldValidateType = .afterEdit
+
     /// text color of placeholder
     var placeholderColor: UIColor! {
-        if isPlaceholderUp == true {
-            switch status {
-            case .error:
-                return errorPlaceholderColor
-            case .warning:
-                return warningPlaceholderColor
-            default:
-                break
-            }
+        switch (status, contentStatus, focusStatus) {
+        case (.normal, .empty, .inactive):
+            return inactivePlaceholderTextColor
+        case (.normal, .empty, .active):
             return activePlaceholderTextColor
+        case ((.error,_,_)):
+            return errorPlaceholderColor
+        case ((.warning,_,_)):
+            return warningPlaceholderColor
+        default:
+            return inactivePlaceholderTextColor
         }
-        return inactivePlaceholderTextColor
     }
     /// animation duration for changing states
-    public var animationDuration: Double = 0.3
-    // flag for first initial of layout
-    private var initialLayout: Bool = false
+    open var animationDuration: Double = 0.3
     /// constraints that will be activated upon initilization
     private var neededConstraint = [NSLayoutConstraint]()
     /// set height of control
     private var heightConstraint: NSLayoutConstraint!
-    /// change status of placeholder position
-    private var isPlaceholderUp: Bool = false {
-        didSet {
-            guard oldValue != isPlaceholderUp else {
-                return
-            }
-            setPlaceholderUp(isUp: isPlaceholderUp, isAnimated: true)
-        }
-    }
     /// should show error label
-    private var isErrorLabelVisibile = false {
-        didSet {
-            if oldValue != isErrorLabelVisibile {
-                errorLabel.changeText(toColor: errorLabelColor,
-                                      animated: false)
-                UIView.animate(withDuration: animationDuration,
-                               animations: {
-                                self.errorLabel.alpha = self.isErrorLabelVisibile ? 1 : 0
-                })
-            }
-        }
-    }
-    ///
     private var errorLabelColor: UIColor {
         switch self.status {
         case .warning:
@@ -114,28 +114,32 @@ public class UnderLineTextField: UITextField {
     }
     /// current color of control base on it's status
     private var lineColor: UIColor {
-        switch self.status {
-        case .inactive:
+        switch (status, contentStatus, focusStatus) {
+        case (.normal, .empty, .inactive):
             return inactiveLineColor
-        case .active:
+        case (.normal, .empty, .active):
             return activeLineColor
-        case .warning:
-            return warningLineColor
-        case .error:
+        case ((.error,_,_)):
             return errorLineColor
+        case ((.warning,_,_)):
+            return warningLineColor
+        default:
+            return inactivePlaceholderTextColor
         }
     }
     /// current width of control line base on it's status
     private var lineWidth: CGFloat {
-        switch self.status {
-        case .inactive:
+        switch (status, contentStatus, focusStatus) {
+        case (.normal, .empty, .inactive):
             return inactiveLineWidth
-        case .active:
+        case (.normal, .empty, .active):
             return activeLineWidth
-        case .warning:
-            return warningLineWidth
-        case .error:
+        case ((.error,_,_)):
             return errorLineWidth
+        case ((.warning,_,_)):
+            return warningLineWidth
+        default:
+            return inactiveLineWidth
         }
     }
 
@@ -196,6 +200,7 @@ public class UnderLineTextField: UITextField {
                                                    constant: 0))
         return label
     }()
+
     /// label for displaying placeholder
     private lazy var placeholderLabel: UIAnimatableLabel = {
         let label = UIAnimatableLabel()
@@ -227,7 +232,7 @@ public class UnderLineTextField: UITextField {
     // MARK: Active State
     //==================
     /// line width when textfield is focused
-    @IBInspectable public var activeLineWidth: CGFloat = 1 {
+    @IBInspectable open var activeLineWidth: CGFloat = 1 {
         didSet {
             if oldValue != activeLineWidth {
                 setNeedsDisplay()
@@ -235,7 +240,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// placeholder color when textfield is focused
-    @IBInspectable public var activePlaceholderTextColor: UIColor = .lightGray {
+    @IBInspectable open var activePlaceholderTextColor: UIColor = .lightGray {
         didSet {
             if oldValue != activePlaceholderTextColor {
                 setNeedsDisplay()
@@ -243,7 +248,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// line color when textfield is focused
-    @IBInspectable public var activeLineColor: UIColor = .darkText {
+    @IBInspectable open var activeLineColor: UIColor = .darkText {
         didSet {
             if oldValue != activeLineColor {
                 setNeedsDisplay()
@@ -255,7 +260,7 @@ public class UnderLineTextField: UITextField {
     // MARK: Inactive Satuts
     //====================
     /// line width when textfield is not focused
-    @IBInspectable public var inactiveLineWidth: CGFloat = 1 {
+    @IBInspectable open var inactiveLineWidth: CGFloat = 1 {
         didSet {
             if oldValue != inactiveLineWidth {
                 setNeedsDisplay()
@@ -263,7 +268,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// placeholder color when textfield is not focused
-    @IBInspectable public var inactivePlaceholderTextColor: UIColor = .darkText {
+    @IBInspectable open var inactivePlaceholderTextColor: UIColor = .darkText {
         didSet {
             if oldValue != inactivePlaceholderTextColor {
                 setNeedsDisplay()
@@ -271,7 +276,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// line color when textfield is not focused
-    @IBInspectable public var inactiveLineColor: UIColor = .lightGray {
+    @IBInspectable open var inactiveLineColor: UIColor = .lightGray {
         didSet {
             if oldValue != inactiveLineColor {
                 setNeedsDisplay()
@@ -283,7 +288,7 @@ public class UnderLineTextField: UITextField {
     // MARK: Warning Status
     //====================
     /// line width when textfield have warning
-    @IBInspectable public var warningLineWidth: CGFloat = 1 {
+    @IBInspectable open var warningLineWidth: CGFloat = 1 {
         didSet {
             if oldValue != warningLineWidth {
                 setNeedsDisplay()
@@ -291,7 +296,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// placeholder color when textfield have warning
-    @IBInspectable public var warningPlaceholderColor: UIColor = UIColor.yellow {
+    @IBInspectable open var warningPlaceholderColor: UIColor = UIColor.yellow {
         didSet {
             if oldValue != warningPlaceholderColor {
                 setNeedsDisplay()
@@ -299,7 +304,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// warrning label color when textfield have warning
-    @IBInspectable public var warningTextColor: UIColor = UIColor.yellow {
+    @IBInspectable open var warningTextColor: UIColor = UIColor.yellow {
         didSet {
             if oldValue != warningTextColor {
                 setNeedsDisplay()
@@ -307,7 +312,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// line color when textfield have warning
-    @IBInspectable public var warningLineColor: UIColor = UIColor.yellow {
+    @IBInspectable open var warningLineColor: UIColor = UIColor.yellow {
         didSet {
             if oldValue != warningLineColor {
                 errorLabel.textColor = errorLineColor
@@ -320,7 +325,7 @@ public class UnderLineTextField: UITextField {
     // MARK: Error Status
     //==================
     /// line width when textfield have error
-    @IBInspectable public var errorLineWidth: CGFloat = 1 {
+    @IBInspectable open var errorLineWidth: CGFloat = 1 {
         didSet {
             if oldValue != errorLineWidth {
                 setNeedsDisplay()
@@ -328,7 +333,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// placeholder color when textfield have error
-    @IBInspectable public var errorPlaceholderColor: UIColor = UIColor.red {
+    @IBInspectable open var errorPlaceholderColor: UIColor = UIColor.red {
         didSet {
             if oldValue != errorPlaceholderColor {
                 setNeedsDisplay()
@@ -336,7 +341,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// error label color when textfield have warning
-    @IBInspectable public var errorTextColor: UIColor = UIColor.yellow {
+    @IBInspectable open var errorTextColor: UIColor = UIColor.yellow {
         didSet {
             if oldValue != warningTextColor {
                 setNeedsDisplay()
@@ -344,7 +349,7 @@ public class UnderLineTextField: UITextField {
         }
     }
     /// line color when textfield have error
-    @IBInspectable public var errorLineColor: UIColor = UIColor.red {
+    @IBInspectable open var errorLineColor: UIColor = UIColor.red {
         didSet {
             if oldValue != errorLineColor {
                 errorLabel.textColor = errorLineColor
@@ -358,18 +363,18 @@ public class UnderLineTextField: UITextField {
 // MARK: - Overrides
 //=================
 extension UnderLineTextField {
-    override public var text: String? {
+    override open var text: String? {
         get {
             return super.text
         }
         set {
             super.text = newValue
-            isPlaceholderUp = text?.isEmpty == false
+            decideContentStatus(fromText: text)
             setNeedsDisplay()
         }
     }
 
-    override public var placeholder: String? {
+    override open var placeholder: String? {
         set {
             placeholderLabel.text = newValue
         }
@@ -378,7 +383,7 @@ extension UnderLineTextField {
         }
     }
 
-    override public var font: UIFont? {
+    override open var font: UIFont? {
         set {
             super.font = newValue
             adjustHeight()
@@ -391,7 +396,7 @@ extension UnderLineTextField {
         }
     }
 
-    override public var clearButtonMode: UITextFieldViewMode {
+    override open var clearButtonMode: UITextFieldViewMode {
         set {
             rightViewMode = newValue
         }
@@ -400,7 +405,7 @@ extension UnderLineTextField {
         }
     }
 
-    override public var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         set {
             super.tintColor = newValue
             clearButton.tintColor = newValue
@@ -410,7 +415,7 @@ extension UnderLineTextField {
         }
     }
 
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         super.draw(rect)
         if lineLayer.superlayer == nil {
             layer.addSublayer(lineLayer)
@@ -420,21 +425,23 @@ extension UnderLineTextField {
         placeholderLabel.textColor = placeholderColor
     }
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.path = createLinePath().cgPath
         setNeedsDisplay()
-        if initialLayout {
-            if text?.isEmpty ?? true {
-                isPlaceholderUp = false
-            } else {
-                isPlaceholderUp = true
-            }
-            initialLayout = false
-        }
     }
 
-    public override func prepareForInterfaceBuilder() {
+    override open func becomeFirstResponder() -> Bool {
+        focusStatus = .active
+        return super.becomeFirstResponder()
+    }
+
+    override open func resignFirstResponder() -> Bool {
+        focusStatus = .inactive
+        return super.resignFirstResponder()
+    }
+
+    override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         initilize()
     }
@@ -444,8 +451,27 @@ extension UnderLineTextField {
 // MARK: - Methods
 //================
 extension UnderLineTextField {
+
+    /// change visibilty of error label
+    func changeErrorLabelVisibilty(visible: Bool) {
+        errorLabel.changeText(toColor: errorLabelColor, animated: true)
+        UIView.animate(withDuration: animationDuration,
+                       animations: {
+                        self.errorLabel.alpha = visible ? 1 : 0
+        })
+    }
+
+    /// decide if text is empty or not
+    private func decideContentStatus(fromText text: String?) {
+        if (text ?? "").isEmpty {
+            contentStatus = .empty
+        } else {
+            contentStatus = .filled
+        }
+    }
+
     /// adjust height constraint of control base on font size
-    func adjustHeight() {
+    private func adjustHeight() {
         let heightLine = (font?.pointSize ?? 0) + 8
         let height =  heightLine + heightLine * 1.6 + 14
         if heightConstraint == nil {
@@ -461,11 +487,13 @@ extension UnderLineTextField {
         heightConstraint.constant = height
         layoutIfNeeded()
     }
-    ///
-    private func setPlaceholderUp(isUp: Bool, isAnimated: Bool) {
+
+    /// change placeholder Place
+    private func setPlaceholderPlace(isUp: Bool, isAnimated: Bool) {
         if isUp {
             var xTransform = placeholderLabel.bounds.width * 0.15
-            xTransform *= -1
+
+            xTransform *= semanticContentAttribute == .forceRightToLeft ? 1 : -1
             let label = self.placeholderLabel
             guard isAnimated else {
                 placeholderLabel.textColor = placeholderColor
@@ -517,6 +545,29 @@ extension UnderLineTextField {
         path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
         return path
     }
+
+    public func validate() throws {
+        do {
+            try (delegate as? UnderLineTextFieldDelegate)?
+                .textFieldValidate(underLineTextField: self)
+             status = .normal
+        } catch UnderLineTextFieldErrors.error(let message) {
+            status = .error
+            errorLabel.text = message
+            throw UnderLineTextFieldErrors.warning(message: message)
+        } catch UnderLineTextFieldErrors.warning(let message) {
+            status = .warning
+            errorLabel.text = message
+            throw UnderLineTextFieldErrors.warning(message: message)
+        } catch {
+            throw error
+        }
+        if isFirstResponder {
+            focusStatus = .active
+        } else {
+            focusStatus = .inactive
+        }
+    }
 }
 
 //=================
@@ -529,27 +580,49 @@ extension UnderLineTextField {
             return
         }
         text = ""
-        self.isPlaceholderUp = false
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
     }
     /// textfield become first responder
     private func formTextFieldDidBeginEditing() {
         layoutIfNeeded()
-        status = .active
+        if validationType.contains(.always) {
+            try? validate()
+        } else {
+            focusStatus = .active
+        }
     }
     /// textfield resigned first responder
     private func formTextFieldDidEndEditing() {
         layoutIfNeeded()
-        status = .inactive
         try? (delegate as? UnderLineTextFieldDelegate)?.textFieldValidate(underLineTextField: self)
+        if validationType.contains(.afterEdit) ||
+            validationType.contains(.onFly) ||
+            validationType.contains(.always) {
+            try? validate()
+        } else {
+            focusStatus = .inactive
+        }
     }
     /// textfield value changed
-    private func formTextFeildValueChanged() {
+    private func formTextFieldValueChanged() {
+        decideContentStatus(fromText: text)
         (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
         guard let text = text, !text.isEmpty else {
-            isPlaceholderUp = false
+            if validationType.contains(.onFly) ||
+                validationType.contains(.always) {
+                try? validate()
+            }
             return
         }
-        isPlaceholderUp = true
+        if validationType.contains(.onFly) ||
+            validationType.contains(.always) {
+            try? validate()
+        }
     }
 }
+
+public enum UnderLineTextFieldErrors: Error {
+    case error(message: String?)
+    case warning(message: String?)
+}
+
