@@ -359,10 +359,12 @@ public class UnderLineTextField: UITextField {
     }
 }
 
-//=================
-// MARK: - Overrides
-//=================
+
 extension UnderLineTextField {
+
+    //=================
+    // MARK: - Overrides
+    //=================
     override open var text: String? {
         get {
             return super.text
@@ -428,6 +430,13 @@ extension UnderLineTextField {
     override open func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.path = createLinePath().cgPath
+        if semanticContentAttribute == .forceRightToLeft {
+            errorLabel.textLayer.alignmentMode = kCAAlignmentRight
+            placeholderLabel.textLayer.alignmentMode = kCAAlignmentRight
+        } else {
+            errorLabel.textLayer.alignmentMode = kCAAlignmentLeft
+            placeholderLabel.textLayer.alignmentMode = kCAAlignmentLeft
+        }
         setNeedsDisplay()
     }
 
@@ -594,7 +603,6 @@ extension UnderLineTextField {
     /// textfield resigned first responder
     private func formTextFieldDidEndEditing() {
         layoutIfNeeded()
-        try? (delegate as? UnderLineTextFieldDelegate)?.textFieldValidate(underLineTextField: self)
         if validationType.contains(.afterEdit) ||
             validationType.contains(.onFly) ||
             validationType.contains(.always) {
@@ -606,7 +614,6 @@ extension UnderLineTextField {
     /// textfield value changed
     private func formTextFieldValueChanged() {
         decideContentStatus(fromText: text)
-        (delegate as? UnderLineTextFieldDelegate)?.textFieldTextChanged(underLineTextField: self)
         guard let text = text, !text.isEmpty else {
             if validationType.contains(.onFly) ||
                 validationType.contains(.always) {
@@ -620,9 +627,3 @@ extension UnderLineTextField {
         }
     }
 }
-
-public enum UnderLineTextFieldErrors: Error {
-    case error(message: String?)
-    case warning(message: String?)
-}
-

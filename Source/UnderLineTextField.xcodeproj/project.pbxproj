@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		843FDC2D1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */; };
 		848F8FD51F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F8FD41F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift */; };
+		84E7D6F51FB3A213002A4EC7 /* UnderLineTextFieldContentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7D6F41FB3A213002A4EC7 /* UnderLineTextFieldContentStatus.swift */; };
+		84E7D6F71FB3A230002A4EC7 /* UnderLineTextFieldFocusStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7D6F61FB3A230002A4EC7 /* UnderLineTextFieldFocusStatus.swift */; };
+		84E7D6F91FB3A24A002A4EC7 /* UnderLineTextFieldErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E7D6F81FB3A24A002A4EC7 /* UnderLineTextFieldErrors.swift */; };
 		84F250E61F98C108002DF707 /* VerticalAlignmentTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */; };
 		84F8A55C1F949AFC00985BF5 /* UnderLineTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F8A5521F949AFC00985BF5 /* UnderLineTextField.framework */; };
 		84F8A5611F949AFC00985BF5 /* UnderLineTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8A5601F949AFC00985BF5 /* UnderLineTextFieldTests.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldStatus.swift; sourceTree = "<group>"; };
 		848F8FD41F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldValidateType.swift; sourceTree = "<group>"; };
+		84E7D6F41FB3A213002A4EC7 /* UnderLineTextFieldContentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldContentStatus.swift; sourceTree = "<group>"; };
+		84E7D6F61FB3A230002A4EC7 /* UnderLineTextFieldFocusStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldFocusStatus.swift; sourceTree = "<group>"; };
+		84E7D6F81FB3A24A002A4EC7 /* UnderLineTextFieldErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextFieldErrors.swift; sourceTree = "<group>"; };
 		84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignmentTextLayer.swift; sourceTree = "<group>"; };
 		84F8A5521F949AFC00985BF5 /* UnderLineTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UnderLineTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F8A5551F949AFC00985BF5 /* UnderLineTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnderLineTextField.h; sourceTree = "<group>"; };
@@ -64,6 +70,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84E7D6FA1FB3A26F002A4EC7 /* Structs and Enums */ = {
+			isa = PBXGroup;
+			children = (
+				843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */,
+				84E7D6F61FB3A230002A4EC7 /* UnderLineTextFieldFocusStatus.swift */,
+				84E7D6F41FB3A213002A4EC7 /* UnderLineTextFieldContentStatus.swift */,
+				848F8FD41F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift */,
+				84E7D6F81FB3A24A002A4EC7 /* UnderLineTextFieldErrors.swift */,
+			);
+			path = "Structs and Enums";
+			sourceTree = "<group>";
+		};
+		84E7D6FB1FB3A275002A4EC7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				84F8A56E1F949B7200985BF5 /* UnderLineTextFieldDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		84F8A5481F949AFC00985BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -87,9 +113,8 @@
 			children = (
 				84F250E51F98C108002DF707 /* VerticalAlignmentTextLayer.swift */,
 				84F8A56C1F949B6800985BF5 /* UnderLineTextField.swift */,
-				843FDC2C1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift */,
-				848F8FD41F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift */,
-				84F8A56E1F949B7200985BF5 /* UnderLineTextFieldDelegate.swift */,
+				84E7D6FA1FB3A26F002A4EC7 /* Structs and Enums */,
+				84E7D6FB1FB3A275002A4EC7 /* Protocols */,
 				84F8A5701F949B7A00985BF5 /* UIAnimatableLabel.swift */,
 				84F8A5761F949EDD00985BF5 /* Supporting Files */,
 			);
@@ -228,11 +253,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F250E61F98C108002DF707 /* VerticalAlignmentTextLayer.swift in Sources */,
+				84E7D6F71FB3A230002A4EC7 /* UnderLineTextFieldFocusStatus.swift in Sources */,
 				84F8A56F1F949B7200985BF5 /* UnderLineTextFieldDelegate.swift in Sources */,
 				84F8A5711F949B7A00985BF5 /* UIAnimatableLabel.swift in Sources */,
+				84E7D6F91FB3A24A002A4EC7 /* UnderLineTextFieldErrors.swift in Sources */,
 				84F8A56D1F949B6800985BF5 /* UnderLineTextField.swift in Sources */,
 				848F8FD51F98EDDA00E74687 /* UnderLineTextFieldValidateType.swift in Sources */,
 				843FDC2D1F98C7B300EE6FB1 /* UnderLineTextFieldStatus.swift in Sources */,
+				84E7D6F51FB3A213002A4EC7 /* UnderLineTextFieldContentStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
