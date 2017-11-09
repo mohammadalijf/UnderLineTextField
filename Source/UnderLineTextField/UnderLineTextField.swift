@@ -82,21 +82,6 @@ open class UnderLineTextField: UITextField {
     /// validation time type
     open var validationType: UnderLineTextFieldValidateType = .afterEdit
 
-    /// text color of placeholder
-    var placeholderColor: UIColor! {
-        switch (status, contentStatus, focusStatus) {
-        case (.normal, .empty, .inactive):
-            return inactivePlaceholderTextColor
-        case (.normal, .empty, .active):
-            return activePlaceholderTextColor
-        case ((.error,_,_)):
-            return errorPlaceholderColor
-        case ((.warning,_,_)):
-            return warningPlaceholderColor
-        default:
-            return inactivePlaceholderTextColor
-        }
-    }
     /// animation duration for changing states
     open var animationDuration: Double = 0.3
     /// constraints that will be activated upon initilization
@@ -115,9 +100,9 @@ open class UnderLineTextField: UITextField {
     /// current color of control base on it's status
     private var lineColor: UIColor {
         switch (status, contentStatus, focusStatus) {
-        case (.normal, .empty, .inactive):
+        case (.normal, _, .inactive):
             return inactiveLineColor
-        case (.normal, .empty, .active):
+        case (.normal, _, .active):
             return activeLineColor
         case ((.error,_,_)):
             return errorLineColor
@@ -130,9 +115,9 @@ open class UnderLineTextField: UITextField {
     /// current width of control line base on it's status
     private var lineWidth: CGFloat {
         switch (status, contentStatus, focusStatus) {
-        case (.normal, .empty, .inactive):
+        case (.normal, _, .inactive):
             return inactiveLineWidth
-        case (.normal, .empty, .active):
+        case (.normal, _, .active):
             return activeLineWidth
         case ((.error,_,_)):
             return errorLineWidth
@@ -140,6 +125,22 @@ open class UnderLineTextField: UITextField {
             return warningLineWidth
         default:
             return inactiveLineWidth
+        }
+    }
+
+    /// text color of placeholder
+    var placeholderColor: UIColor! {
+        switch (status, contentStatus, focusStatus) {
+        case (.normal, .filled, _):
+            return activePlaceholderTextColor
+        case (.normal, .empty, _):
+            return inactivePlaceholderTextColor
+        case ((.error,_,_)):
+            return errorPlaceholderColor
+        case ((.warning,_,_)):
+            return warningPlaceholderColor
+        default:
+            return inactivePlaceholderTextColor
         }
     }
 
