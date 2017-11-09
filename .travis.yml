@@ -1,6 +1,9 @@
 language: objective-c
-osx_image: xcode9.1
-xcode_project: UnderLineTextField
+osx_image: xcode9
+branches:
+  only:
+  - master
+xcode_project: UnderLineTextField.xcodeproj
 xcode_scheme: UnderLineTextField
 xcode_sdk: iphonesimulator9.1
 env:
@@ -13,3 +16,11 @@ before_script:
 before_deploy:
 - carthage build --no-skip-current
 - carthage archive $FRAMEWORK_NAME
+deploy:
+  provider: releases
+  api_key:
+    secure: G0Q6r5ugSUcf23Ih3jbp0RDcpGmsJ9zOsvmc2zpZpZGqlQhfVL2aK3J5QILolIKjG2ipDUTUzRPXeChQ4CjgZzduNlLoidOTbpw8NQq5WdvmFXv5EpitBV6kai2BFiiJ9KPuH2yQWkv04LmsVbH+MdYyiRtReJfvsfgHqZo84OPvrDGFg6neWGkjiOqraCW3nVLGJ54/ktnSvgB8UAA60d1TsrAo1zU31RbUmtfOuzFHf1c9TliIhhY5JfoNY9WVQ0BGn5twg0y7te2dnSRDG5ALU4PxAdD7DXIe/MuHo7R99j9xQsIAmdmZF6/DwzXTj19rfiodDbp/3tX/j+0eT0hsU1vqiQmWFsIsKoFR3HzG/SCIZFp/68hC+7K363yVrEYwty5P9ATyegwcvGGjmVJw/nKHdeU+xXaxzqEj6G8f9+9p1/M1p3Ktl72qy4zLWDwAl+R8O6nNRTZGPKmAsiPvdVy/k0kbzcoQ+5R2hmw9gG4q37YOLXjWoQ5oPaI06CJrYFeUBAsgB7tNY2N/BNxJY16iexjkaNytLBpyDJBUnLY4C9kDWJdQkqkob7NrjzLhAohfXK7yydFAs1Ck6vtteh9HEKmAlutZ619Dtm19S0sbvw3MGvy2cJfUdQf8o4ui3BS+/y2qZ3WLaAdJbM09To4HoLf/PzO0uANZiP8=
+  file: "$FRAMEWORK_NAME.framework.zip"
+  on:
+    repo: mohammadalijf/UnderLineTextField
+    branch: master
