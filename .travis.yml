@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode9.1
-script: xcodebuild clean && xcodebuild build -sdk iphonesimulator11.1 -project UnderLineTextField.xcodeproj -scheme UnderLineTextField CODE_SIGNING_REQUIRED=NO
+script: script: xcodebuild build -project /Source/UnderLineTextField.xcodeproj -scheme UnderLineTextField
 branches:
   only:
   - master
