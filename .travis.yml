@@ -1,11 +1,12 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode9.1
+script: xcodebuild clean && xcodebuild build -sdk iphonesimulator11.1 -project UnderLineTextField.xcodeproj -scheme UnderLineTextField CODE_SIGNING_REQUIRED=NO
 branches:
   only:
   - master
 xcode_project: UnderLineTextField.xcodeproj
 xcode_scheme: UnderLineTextField
-xcode_sdk: iphonesimulator9.1
+xcode_sdk: iphonesimulator11.1
 env:
   global:
   - FRAMEWORK_NAME=UnderLineTextField
