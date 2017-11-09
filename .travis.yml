@@ -13,14 +13,3 @@ before_script:
 before_deploy:
 - carthage build --no-skip-current
 - carthage archive $FRAMEWORK_NAME
-deploy:
-  provider: releases
-  api_key:
-    secure: QTx4Td34SWGvxwtlG7g91k/deyFbJKFW7hIg6HR5O4SwyDJ4NSrUBcZxj5ckpljuLa68K4gERl05DeL7qyV3YU6j/0gUnpKNO0efdklX3j4WdM1RqTdZv3dzj22SomLF8dveQBeo5EgH4itHuwLiuIna7bU8IG3mdyPHF+XUUsNZVLfzOGqheSbDUqy+u2vhXilCxMAUjzF1HpD2sbfcnnlcs54/YzuW9lxJuWCMqAG1eS2wal8uKwqtIMN9G/sgF79awrU3Gdj3zYGQ2bzgz027QVoElWGOQjQI7i/joUterMyGvOw9SBFu/lX3nLyp3OFYuLZcKZpFDN8RAAK/meRNlAS4rXEumVpMQHWhfy/MFcWbWaZzeeKY1fk8NXIvOYjSI81riCcoW5JyHwJ4SEw3yhplCZpzltOhfO9lIWMhrcrDjp3F4FrCuJ2VvBG1CmbkbGkx+Qq0UlxOGkbUl7Iw3zYhUINeJJEb7alEd+JG6N6Hk+cubeP2IRcbYVQeqdvnT24ifBnuteQMv/hnf5uDQd72Qp2Fkr/4HbsKzWGQYcTzaWvWFOYvTUG0dm0MsKEqO1KVPIJ+q6P+oMqPQbPDZWrPDh8JAMlsmDu/LZfMY6cvXBtN4FqPTVZWoPe28Q/QsyRxvf3aq6IPDbasIAds5MJNILrmG8O2R9rqHTU=
-  file: "$FRAMEWORK_NAME.framework.zip"
-  skip_cleanup: true
-  on:
-    repo: mohammadalijf/UnderLineTextField
-    tags: true
-    branch: master
-
