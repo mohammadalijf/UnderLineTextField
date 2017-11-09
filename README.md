@@ -27,6 +27,7 @@ github "mohammadalijf/UnderLineTextField"
 
 Run `carthage update` to build the framework and drag the built `UnderLineTextField.framework` into your Xcode project.
 
+> xcode does not support 'IBDesignable' or 'IBInspecatable' on cocoa frameworks. to work around for carthage users. created simple 'UnderLineTextFieldCarthage.swift' file. it is a wrapper around 'UnderLineTextfield' which can be used in projects for supporting 'IBDesignable' and 'IBInspecatable'. just simply drop 'UnderLineTextFieldCarthage.swift' in your project and use this class instead of 'UnderLineTextfield'. 
 
 ## How It Works
 

@@ -11,7 +11,7 @@ import QuartzCore
 
 /// Simple UITextfield Subclass with state
 @IBDesignable
-public class UnderLineTextField: UITextField {
+open class UnderLineTextField: UITextField {
 
     //============
     // MARK: - inits
