@@ -108,6 +108,7 @@ func textFieldValidate(underLineTextField: UnderLineTextField) throws {
 ```
 
 * textFieldTextChanged
+
 this func is called when text changes. or clear button is used.
 
 ```swift
