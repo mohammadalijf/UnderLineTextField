@@ -11,11 +11,23 @@ Simple UITextfield Subclass with state
 ### Cocoapods
 You can use [cocoapods](https://cocoapods.org)  to add UnderLineTextField to your project
 
-```
+```ruby
 target 'MyApp' do
   pod 'UnderLineTextField', '~> 2.0'
 end
 ```
+### Carthage
+You can use [Carthage](https://github.com/Carthage/Carthage) to add UnderLineTextField to your project
+
+To integrate UnderLineTextField into your Xcode project using Carthage, specify it in your 'Cartfile':
+
+```ogdl
+github "mohammadalijf/UnderLineTextField"
+```
+
+Run `carthage update` to build the framework and drag the built `UnderLineTextField.framework` into your Xcode project.
+
+> xcode does not support 'IBDesignable' or 'IBInspecatable' on cocoa frameworks. to work around for carthage users. created simple 'UnderLineTextFieldCarthage.swift' file. it is a wrapper around 'UnderLineTextfield' which can be used in projects for supporting 'IBDesignable' and 'IBInspecatable'. just simply drop 'UnderLineTextFieldCarthage.swift' in your project and use this class instead of 'UnderLineTextfield'. 
 
 ## How It Works
 
@@ -96,6 +108,7 @@ func textFieldValidate(underLineTextField: UnderLineTextField) throws {
 ```
 
 * textFieldTextChanged
+
 this func is called when text changes. or clear button is used.
 
 ```swift
