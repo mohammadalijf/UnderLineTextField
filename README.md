@@ -1,3 +1,7 @@
+[![CocoaPods](https://img.shields.io/cocoapods/v/UnderLineTextField.svg)](https://cocoapods.org/pods/UnderLineTextField)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-blue.svg)]()
+
+
 # UnderLineTextField
 Simple UITextfield Subclass with state
 
