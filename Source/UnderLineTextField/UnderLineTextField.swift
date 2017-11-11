@@ -442,6 +442,7 @@ extension UnderLineTextField {
         super.layoutSubviews()
         lineLayer.path = createLinePath().cgPath
         setNeedsDisplay()
+        changeSementics()
     }
 
     override open func becomeFirstResponder() -> Bool {
@@ -457,11 +458,6 @@ extension UnderLineTextField {
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         initilize()
-    }
-
-    open override func setNeedsDisplay() {
-        super.setNeedsDisplay()
-        changeSementics()
     }
 }
 
