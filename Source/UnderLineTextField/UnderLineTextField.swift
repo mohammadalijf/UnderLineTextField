@@ -418,6 +418,16 @@ extension UnderLineTextField {
         }
     }
 
+    open override var semanticContentAttribute: UISemanticContentAttribute {
+        get {
+            return super.semanticContentAttribute
+        }
+        set {
+            super.semanticContentAttribute = newValue
+            changeSementics()
+        }
+    }
+
     override open func draw(_ rect: CGRect) {
         super.draw(rect)
         if lineLayer.superlayer == nil {
@@ -431,13 +441,6 @@ extension UnderLineTextField {
     override open func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.path = createLinePath().cgPath
-        if semanticContentAttribute == .forceRightToLeft {
-            errorLabel.textLayer.alignmentMode = kCAAlignmentRight
-            placeholderLabel.textLayer.alignmentMode = kCAAlignmentRight
-        } else {
-            errorLabel.textLayer.alignmentMode = kCAAlignmentLeft
-            placeholderLabel.textLayer.alignmentMode = kCAAlignmentLeft
-        }
         setNeedsDisplay()
     }
 
@@ -455,12 +458,27 @@ extension UnderLineTextField {
         super.prepareForInterfaceBuilder()
         initilize()
     }
+
+    open override func setNeedsDisplay() {
+        super.setNeedsDisplay()
+        changeSementics()
+    }
 }
 
 //================
 // MARK: - Methods
 //================
 extension UnderLineTextField {
+
+    func changeSementics() {
+        if semanticContentAttribute == .forceRightToLeft {
+            errorLabel.textLayer.alignmentMode = kCAAlignmentRight
+            placeholderLabel.textLayer.alignmentMode = kCAAlignmentRight
+        } else {
+            errorLabel.textLayer.alignmentMode = kCAAlignmentLeft
+            placeholderLabel.textLayer.alignmentMode = kCAAlignmentLeft
+        }
+    }
 
     /// change visibilty of error label
     func changeErrorLabelVisibilty(visible: Bool) {
@@ -614,6 +632,8 @@ extension UnderLineTextField {
     }
     /// textfield value changed
     private func formTextFieldValueChanged() {
+        (delegate as? UnderLineTextFieldDelegate)?
+            .textFieldTextChanged(underLineTextField: self)
         decideContentStatus(fromText: text)
         guard let text = text, !text.isEmpty else {
             if validationType.contains(.onFly) ||
