@@ -144,4 +144,8 @@ extension ViewController: UnderLineTextFieldDelegate {
         return false
     }
 
+    func textFieldTextChanged(underLineTextField: UnderLineTextField) {
+        print("im empty \(underLineTextField)")
+    }
+
 }
