@@ -389,10 +389,12 @@ extension UnderLineTextField {
     override open var font: UIFont? {
         set {
             super.font = newValue
+            placeholderLabel.font = newValue
             adjustHeight()
             if let fontName = font?.familyName, let size = font?.pointSize {
                 errorLabel.font = UIFont(name: fontName, size: size * 0.8)
             }
+
         }
         get {
             return super.font
