@@ -16,7 +16,7 @@ open class UnderLineTextField: UITextField {
     //============
     // MARK: - inits
     //============
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         initilize()
     }
@@ -147,7 +147,7 @@ open class UnderLineTextField: UITextField {
     //=====================
     // MARK: Lazy Loadings
     //=====================
-    private lazy var clearButton: UIButton = {
+    open lazy var clearButton: UIButton = {
         let button = UIButton(type: .custom)
         let bundle = Bundle.init(for: UnderLineTextField.self)
         let clearImage = UIImage(named: "Clear",
@@ -162,7 +162,7 @@ open class UnderLineTextField: UITextField {
         return button
     }()
     /// layer which line will be drawn on it
-    private lazy var lineLayer: CAShapeLayer = {
+    open lazy var lineLayer: CAShapeLayer = {
         let layer = CAShapeLayer(layer: self.layer)
         layer.lineCap = kCALineCapRound
         layer.strokeColor = lineColor.cgColor
@@ -170,7 +170,7 @@ open class UnderLineTextField: UITextField {
         return layer
     }()
     /// label for displaying error
-    private lazy var errorLabel: UIAnimatableLabel = {
+    open lazy var errorLabel: UIAnimatableLabel = {
         let label = UIAnimatableLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.animationDuration = animationDuration
@@ -203,7 +203,7 @@ open class UnderLineTextField: UITextField {
     }()
 
     /// label for displaying placeholder
-    private lazy var placeholderLabel: UIAnimatableLabel = {
+    open lazy var placeholderLabel: UIAnimatableLabel = {
         let label = UIAnimatableLabel()
         label.font = self.font
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -391,7 +391,7 @@ extension UnderLineTextField {
             super.font = newValue
             placeholderLabel.font = newValue
             adjustHeight()
-            if let fontName = font?.familyName, let size = font?.pointSize {
+            if let fontName = newValue?.familyName, let size = newValue?.pointSize {
                 errorLabel.font = UIFont(name: fontName, size: size * 0.8)
             }
 
