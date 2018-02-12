@@ -12,7 +12,7 @@ import QuartzCore
 /// Simple UITextfield Subclass with state
 @IBDesignable
 open class UnderLineTextField: UITextField {
-
+    private var isLayoutCalled = false
     //============
     // MARK: - inits
     //============
@@ -25,6 +25,7 @@ open class UnderLineTextField: UITextField {
         initilize()
     }
     private func initilize() {
+        neededConstraint.append(heightConstraint)
         borderStyle = .none
         placeholder = super.placeholder
         tintColor = super.tintColor
@@ -70,6 +71,7 @@ open class UnderLineTextField: UITextField {
             guard contentStatus != oldValue else {
                 return
             }
+            layoutIfNeeded()
             if contentStatus == .empty {
                 setPlaceholderPlace(isUp: false, isAnimated: true)
             } else {
@@ -86,8 +88,6 @@ open class UnderLineTextField: UITextField {
     open var animationDuration: Double = 0.3
     /// constraints that will be activated upon initilization
     private var neededConstraint = [NSLayoutConstraint]()
-    /// set height of control
-    private var heightConstraint: NSLayoutConstraint!
     /// should show error label
     private var errorLabelColor: UIColor {
         switch self.status {
@@ -147,6 +147,16 @@ open class UnderLineTextField: UITextField {
     //=====================
     // MARK: Lazy Loadings
     //=====================
+    /// set height of control
+    private lazy var heightConstraint: NSLayoutConstraint = {
+        return NSLayoutConstraint(item: self,
+                                  attribute: .height,
+                                  relatedBy: .equal,
+                                  toItem: nil,
+                                  attribute: .notAnAttribute,
+                                  multiplier: 1,
+                                  constant: 0)
+    }()
     private lazy var clearButton: UIButton = {
         let button = UIButton(type: .custom)
         let bundle = Bundle.init(for: UnderLineTextField.self)
@@ -441,8 +451,8 @@ extension UnderLineTextField {
     override open func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.path = createLinePath().cgPath
-        setNeedsDisplay()
         changeSementics()
+        isLayoutCalled = true
     }
 
     override open func becomeFirstResponder() -> Bool {
@@ -498,17 +508,8 @@ extension UnderLineTextField {
     private func adjustHeight() {
         let heightLine = (font?.pointSize ?? 0) + 8
         let height =  heightLine + heightLine * 1.6 + 14
-        if heightConstraint == nil {
-            heightConstraint = NSLayoutConstraint(item: self,
-                                                  attribute: .height,
-                                                  relatedBy: .equal,
-                                                  toItem: nil,
-                                                  attribute: .notAnAttribute,
-                                                  multiplier: 1,
-                                                  constant: height)
-            heightConstraint.isActive = true
-        }
         heightConstraint.constant = height
+        guard isLayoutCalled else { return }
         layoutIfNeeded()
     }
 
