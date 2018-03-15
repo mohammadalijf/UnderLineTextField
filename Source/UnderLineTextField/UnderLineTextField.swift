@@ -133,8 +133,10 @@ open class UnderLineTextField: UITextField {
         switch (status, contentStatus, focusStatus) {
         case (.normal, .filled, _):
             return activePlaceholderTextColor
-        case (.normal, .empty, _):
+        case (.normal, .empty, .inactive):
             return inactivePlaceholderTextColor
+        case (.normal, .empty, .active):
+            return activePlaceholderTextColor
         case ((.error,_,_)):
             return errorPlaceholderColor
         case ((.warning,_,_)):
