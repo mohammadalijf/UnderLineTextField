@@ -124,13 +124,13 @@ extension UIAnimatableLabel {
     //================
     func setContentSize() {
         let newText: NSString = NSString(string: text ?? "")
-        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
         let boundingRect = newText.boundingRect(with: constraintRect,
                                                 options: .usesLineFragmentOrigin,
                                                 attributes: [.font: font],
                                                 context: nil)
         widthConstraint.constant = boundingRect.width + 8
-        heightConstraint.constant = boundingRect.height + 8
+        heightConstraint.constant = boundingRect.height
         layoutIfNeeded()
     }
 
