@@ -95,7 +95,7 @@ public class UIAnimatableLabel: UIView {
     lazy var textLayer: VerticalAlignedTextLayer = {
         let textLayer = VerticalAlignedTextLayer()
         textLayer.contentsScale = UIScreen.main.scale
-        textLayer.truncationMode = kCATruncationEnd
+        textLayer.truncationMode = CATextLayerTruncationMode.end
         layer.addSublayer(textLayer)
         return textLayer
     }()
@@ -154,7 +154,7 @@ extension UIAnimatableLabel {
         CATransaction.begin()
         CATransaction.setAnimationDuration(animationDuration)
         CATransaction
-            .setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+            .setAnimationTimingFunction(CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut))
         textColor = color
         CATransaction.commit()
     }

@@ -176,7 +176,7 @@ open class UnderLineTextField: UITextField {
     /// layer which line will be drawn on it
     private lazy var lineLayer: CAShapeLayer = {
         let layer = CAShapeLayer(layer: self.layer)
-        layer.lineCap = kCALineCapRound
+        layer.lineCap = CAShapeLayerLineCap.round
         layer.strokeColor = lineColor.cgColor
         layer.lineWidth = lineWidth
         return layer
@@ -411,7 +411,7 @@ extension UnderLineTextField {
         }
     }
 
-    override open var clearButtonMode: UITextFieldViewMode {
+    override open var clearButtonMode: UITextField.ViewMode {
         set {
             rightViewMode = newValue
         }
@@ -480,11 +480,11 @@ extension UnderLineTextField {
 
     func changeSementics() {
         if semanticContentAttribute == .forceRightToLeft {
-            errorLabel.textLayer.alignmentMode = kCAAlignmentRight
-            placeholderLabel.textLayer.alignmentMode = kCAAlignmentRight
+            errorLabel.textLayer.alignmentMode = CATextLayerAlignmentMode.right
+            placeholderLabel.textLayer.alignmentMode = CATextLayerAlignmentMode.right
         } else {
-            errorLabel.textLayer.alignmentMode = kCAAlignmentLeft
-            placeholderLabel.textLayer.alignmentMode = kCAAlignmentLeft
+            errorLabel.textLayer.alignmentMode = CATextLayerAlignmentMode.left
+            placeholderLabel.textLayer.alignmentMode = CATextLayerAlignmentMode.left
         }
     }
 
