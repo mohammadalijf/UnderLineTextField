@@ -23,20 +23,8 @@ open class UIAnimatableLabel: UIView {
         initial()
     }
     private func initial() {
-        widthConstraint = NSLayoutConstraint(item: self,
-                                             attribute: .width,
-                                             relatedBy: .equal,
-                                             toItem: nil,
-                                             attribute: .notAnAttribute,
-                                             multiplier: 1,
-                                             constant: 0)
-        heightConstraint = NSLayoutConstraint(item: self,
-                                              attribute: .height,
-                                              relatedBy: .equal,
-                                              toItem: nil,
-                                              attribute: .notAnAttribute,
-                                              multiplier: 1,
-                                              constant: 0)
+        widthConstraint = widthAnchor.constraint(equalToConstant: 0)
+        heightConstraint = heightAnchor.constraint(equalToConstant: 0)
         widthConstraint.priority = .defaultLow
         heightConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([heightConstraint, widthConstraint])
