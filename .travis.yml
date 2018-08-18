@@ -1,4 +1,4 @@
-language: objective-c
+language: swift
 osx_image: xcode10
 script: xcodebuild clean -project Source/UnderLineTextField.xcodeproj && xcodebuild build -project Source/UnderLineTextField.xcodeproj -scheme UnderLineTextField
 branches:
