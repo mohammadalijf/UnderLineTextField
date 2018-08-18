@@ -54,6 +54,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var customFontsTextfield: UnderLineTextField! {
+        didSet {
+            customFontsTextfield.placeholderFont = UIFont(name: "American Typewriter", size: 30)
+            customFontsTextfield.errorFont = UIFont(name: "Bradley Hand", size: 17)
+            customFontsTextfield.validationType = .onFly
+        }
+    }
+    
     private var keyboardObserver: KeyboardObserver!
 
 }
@@ -96,6 +104,9 @@ extension ViewController: UnderLineTextFieldDelegate {
                 throw UnderLineTextFieldErrors
                     .error(message: "\(sixCharTextField.text!.count - 6) characters is extra")
             }
+        case customFontsTextfield:
+            guard underLineTextField.text?.isEmpty == false else { return }
+            throw UnderLineTextFieldErrors.warning(message: "Fancy Font")
         default:
             break
         }
@@ -103,6 +114,7 @@ extension ViewController: UnderLineTextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let nextTextField = view.viewWithTag(textField.tag + 1) else {
+            view.endEditing(true)
             return false
         }
         _ = nextTextField.becomeFirstResponder()

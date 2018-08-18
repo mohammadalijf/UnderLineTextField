@@ -57,6 +57,24 @@ open class UnderLineTextField: UITextField {
             setNeedsDisplay()
         }
     }
+    
+    /// placeholder label font.
+    /// default is textfield's font
+    open var placeholderFont: UIFont? {
+        didSet {
+            placeholderLabel.font = placeholderFont ?? font
+            adjustHeight()
+        }
+    }
+    
+    /// error label font
+    /// default is textfield's font
+    open var errorFont: UIFont? {
+        didSet {
+            errorLabel.font = errorFont ?? font
+            adjustHeight()
+        }
+    }
 
     /// current focus status of textfield (can be active, inactive)
     open var focusStatus: UnderLineTextFieldFocusStatus = .inactive {
@@ -97,6 +115,22 @@ open class UnderLineTextField: UITextField {
             return errorTextColor
         }
     }
+    
+    /// editing text height
+    private var lineHeight: CGFloat {
+        return font?.pointSize ?? 0
+    }
+
+    /// placeholder text height
+    private var placeholderHeight: CGFloat {
+        return placeholderFont?.pointSize ?? lineHeight
+    }
+    
+    /// error text height
+    private var errorHeight: CGFloat {
+        return errorFont?.pointSize ?? lineHeight
+    }
+
     /// current color of control base on it's status
     private var lineColor: UIColor {
         switch (status, contentStatus, focusStatus) {
@@ -217,7 +251,7 @@ open class UnderLineTextField: UITextField {
     /// label for displaying placeholder
     open lazy var placeholderLabel: UIAnimatableLabel = {
         let label = UIAnimatableLabel()
-        label.font = self.font
+        label.font = placeholderFont ?? self.font
         label.translatesAutoresizingMaskIntoConstraints = false
         label.animationDuration = animationDuration
         addSubview(label)
@@ -468,6 +502,21 @@ extension UnderLineTextField {
         focusStatus = .inactive
         return super.resignFirstResponder()
     }
+    
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
+        let padding = UIEdgeInsets(top: placeholderHeight - lineHeight - 7, left: 0, bottom: 0, right: 0)
+        return bounds.inset(by: padding)
+    }
+    
+    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        let padding = UIEdgeInsets(top: placeholderHeight - lineHeight - 7, left: 0, bottom: 0, right: 0)
+        return bounds.inset(by: padding)
+    }
+    
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        let padding = UIEdgeInsets(top: placeholderHeight - lineHeight - 7, left: 0, bottom: 0, right: 0)
+        return bounds.inset(by: padding)
+    }
 
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
@@ -510,8 +559,10 @@ extension UnderLineTextField {
 
     /// adjust height constraint of control base on font size
     private func adjustHeight() {
-        let heightLine = (font?.pointSize ?? 0) + 8
-        let height =  heightLine + heightLine * 1.6 + 14
+        let lineHeight = textHeightForFont(font: font) + 8
+        let placeholderHeight = textHeightForFont(font: placeholderFont)
+        let errorHeight = textHeightForFont(font: errorFont)
+        let height =  lineHeight + placeholderHeight * 0.8 + errorHeight
         heightConstraint.constant = height
         guard isLayoutCalled else { return }
         layoutIfNeeded()
@@ -520,25 +571,19 @@ extension UnderLineTextField {
     /// change placeholder Place
     private func setPlaceholderPlace(isUp: Bool, isAnimated: Bool) {
         if isUp {
-            var xTransform = placeholderLabel.bounds.width * 0.15
-
-            xTransform *= semanticContentAttribute == .forceRightToLeft ? 1 : -1
-            let label = self.placeholderLabel
+            let scaleTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            let dummy = UIView()
+            dummy.frame = placeholderLabel.frame
+            dummy.transform = scaleTransform
+            let translateTranform = CGAffineTransform(translationX: placeholderLabel.frame.origin.x - dummy.frame.origin.x,
+                                                      y: -dummy.frame.origin.y)
             guard isAnimated else {
                 placeholderLabel.textColor = placeholderColor
-                label.transform = label.transform.scaledBy(x: 0.8, y: 0.8)
-                label.transform = label
-                    .transform
-                    .translatedBy(x: xTransform,
-                                  y: label.frame.origin.y * -1)
+                placeholderLabel.transform = scaleTransform.concatenating(translateTranform)
                 return
             }
             UIView.animate(withDuration: animationDuration, animations: {
-                label.transform = label.transform.scaledBy(x: 0.8, y: 0.8)
-                label.transform = label
-                    .transform
-                    .translatedBy(x: xTransform,
-                                  y: label.frame.origin.y * -1)
+                self.placeholderLabel.transform = scaleTransform.concatenating(translateTranform)
             })
         } else {
             guard isAnimated else {
@@ -569,10 +614,22 @@ extension UnderLineTextField {
     private func createLinePath() -> UIBezierPath {
         let path = UIBezierPath()
         let heightLine = (font?.pointSize ?? 0) + 8
-        let padding = heightLine + heightLine * 0.8 + 9
+        let placeholderLine = textHeightForFont(font: placeholderFont) + 4
+        let padding = heightLine + placeholderLine * 0.8
         path.move(to: CGPoint(x: 0, y: padding))
         path.addLine(to: CGPoint(x: bounds.maxX, y: padding))
         return path
+    }
+    
+    private func textHeightForFont(font: UIFont?) -> CGFloat {
+        let font = font ?? self.font ?? .systemFont(ofSize: 17)
+        let newText: NSString = NSString(string: "text")
+        let constraintRect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
+        let boundingRect = newText.boundingRect(with: constraintRect,
+                                                options: .usesLineFragmentOrigin,
+                                                attributes: [.font: font],
+                                                context: nil)
+        return boundingRect.size.height
     }
 
     public func validate() throws {
