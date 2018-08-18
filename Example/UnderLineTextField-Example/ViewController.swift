@@ -21,21 +21,40 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var normalTextField: UnderLineTextField!
     @IBOutlet weak var prefilledTextfield: UnderLineTextField!
-    @IBOutlet weak var sixCharTextField: UnderLineTextField!
-    @IBOutlet weak var warningTextField: UnderLineTextField!
-    @IBOutlet weak var alwaysComplainTextfield: UnderLineTextField!
-    @IBOutlet weak var onFlyComplainTextfield: UnderLineTextField!
-    @IBOutlet weak var afterEditComplainTextfield: UnderLineTextField!
     @IBOutlet weak var bigFontTextfield: UnderLineTextField!
     @IBOutlet weak var clearButtonTextfield: UnderLineTextField!
-    @IBOutlet var formFields: [UnderLineTextField]!
-
-    //=============
-    // MARK: - denit
-    //=============
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    @IBOutlet var formFields: [UnderLineTextField]! {
+        didSet {
+            formFields.forEach { $0.delegate = self }
+        }
     }
+    @IBOutlet weak var sixCharTextField: UnderLineTextField! {
+        didSet {
+            sixCharTextField.validationType = .always
+        }
+    }
+    @IBOutlet weak var warningTextField: UnderLineTextField! {
+        didSet {
+            warningTextField.validationType = .always
+        }
+    }
+    @IBOutlet weak var alwaysComplainTextfield: UnderLineTextField! {
+        didSet {
+            alwaysComplainTextfield.validationType = .always
+        }
+    }
+    @IBOutlet weak var onFlyComplainTextfield: UnderLineTextField! {
+        didSet {
+            onFlyComplainTextfield.validationType = .onFly
+        }
+    }
+    @IBOutlet weak var afterEditComplainTextfield: UnderLineTextField! {
+        didSet {
+            afterEditComplainTextfield.validationType = .afterEdit
+        }
+    }
+    
+    private var keyboardObserver: KeyboardObserver!
 
 }
 
@@ -46,44 +65,8 @@ extension ViewController {
     //=================
     override func viewDidLoad() {
         super.viewDidLoad()
-        formFields.forEach({ $0.delegate = self })
-        NotificationCenter.default
-            .addObserver(self,
-                         selector: #selector(self.keyboardNotification(notification:)),
-                         name: UIResponder.keyboardWillChangeFrameNotification,
-                         object: nil)
-        warningTextField.validationType = .always
-        alwaysComplainTextfield.validationType = .always
-        onFlyComplainTextfield.validationType = .onFly
-        afterEditComplainTextfield.validationType = .afterEdit
-        sixCharTextField.validationType = .always
-    }
-
-}
-
-@objc extension ViewController {
-
-    //=================
-    // MARK: - Selectors
-    //=================
-    func keyboardNotification(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-            let animationCurve: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
-            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-                self.scrollViewBottomConstraint?.constant = 0.0
-            } else {
-                self.scrollViewBottomConstraint?.constant = endFrame?.size.height ?? 0.0
-            }
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: { self.view.layoutIfNeeded() },
-                           completion: nil)
-        }
+        keyboardObserver = .init(view: view, constraint: scrollViewBottomConstraint)
+        keyboardObserver.addNotification()
     }
 
 }
@@ -119,29 +102,15 @@ extension ViewController: UnderLineTextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case normalTextField:
-            _ = prefilledTextfield.becomeFirstResponder()
-        case prefilledTextfield:
-            _ = sixCharTextField.becomeFirstResponder()
-        case sixCharTextField:
-            _ = warningTextField.becomeFirstResponder()
-        case warningTextField:
-            _ = alwaysComplainTextfield.becomeFirstResponder()
-        case alwaysComplainTextfield:
-            _ = onFlyComplainTextfield.becomeFirstResponder()
-        case onFlyComplainTextfield:
-            _ = afterEditComplainTextfield.becomeFirstResponder()
-        case afterEditComplainTextfield:
-            _ = clearButtonTextfield.becomeFirstResponder()
-        case clearButtonTextfield:
-            _ = bigFontTextfield.becomeFirstResponder()
-        case bigFontTextfield:
-            _ = normalTextField.becomeFirstResponder()
-        default:
-            break
+        guard let nextTextField = view.viewWithTag(textField.tag + 1) else {
+            return false
         }
+        _ = nextTextField.becomeFirstResponder()
         return false
+    }
+
+    func textFieldTextChanged(underLineTextField: UnderLineTextField) {
+        print("im empty \(underLineTextField)")
     }
 
 }

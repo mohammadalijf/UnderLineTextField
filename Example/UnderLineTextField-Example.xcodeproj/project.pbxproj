@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		504561E02127E9D400B6F828 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504561DF2127E9D400B6F828 /* KeyboardObserver.swift */; };
 		846437D91F967B6200C584A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846437D81F967B6200C584A7 /* AppDelegate.swift */; };
 		846437DB1F967B6200C584A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846437DA1F967B6200C584A7 /* ViewController.swift */; };
 		846437DE1F967B6200C584A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846437DC1F967B6200C584A7 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		504561DF2127E9D400B6F828 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		79B9D1D6E5E0341FEBE12025 /* Pods-UnderLineTextField-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnderLineTextField-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UnderLineTextField-Example/Pods-UnderLineTextField-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		846437D51F967B6200C584A7 /* UnderLineTextField-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UnderLineTextField-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		846437D81F967B6200C584A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				846437D81F967B6200C584A7 /* AppDelegate.swift */,
 				846437DA1F967B6200C584A7 /* ViewController.swift */,
+				504561DF2127E9D400B6F828 /* KeyboardObserver.swift */,
 				846437DC1F967B6200C584A7 /* Main.storyboard */,
 				846437DF1F967B6200C584A7 /* Assets.xcassets */,
 				846437E11F967B6200C584A7 /* LaunchScreen.storyboard */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846437DB1F967B6200C584A7 /* ViewController.swift in Sources */,
+				504561E02127E9D400B6F828 /* KeyboardObserver.swift in Sources */,
 				846437D91F967B6200C584A7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
