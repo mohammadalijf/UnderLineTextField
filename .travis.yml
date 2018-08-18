@@ -6,7 +6,7 @@ branches:
   - master
 xcode_project: UnderLineTextField.xcodeproj
 xcode_scheme: UnderLineTextField
-xcode_sdk: iphonesimulator11.1
+xcode_sdk: iphonesimulator12.0
 env:
   global:
   - FRAMEWORK_NAME=UnderLineTextField
