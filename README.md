@@ -18,7 +18,7 @@ You can use [cocoapods](https://cocoapods.org)  to add UnderLineTextField to you
 
 ```ruby
 target 'MyApp' do
-  pod 'UnderLineTextField', '~> 2.0'
+  pod 'UnderLineTextField', '~> 2.1'
 end
 ```
 ### Carthage
