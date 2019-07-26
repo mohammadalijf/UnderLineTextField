@@ -2,6 +2,8 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/UnderLineTextField.svg)](https://cocoapods.org/pods/UnderLineTextField)
 
+# IMPORTANT NOTE
+Due to Github banning every developer from Iran i can not simply maintain this repo on Github anymore. I have moved the repo to Gitlab. use [Gitlab Repo](https://gitlab.com/mohammadalijf/underlinetextfield) instead. thanks in advance.
 
 # UnderLineTextField
 Simple UITextfield Subclass with state
