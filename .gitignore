@@ -19,6 +19,30 @@ Carthage/Build
 ### macOS ###
 # General
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 ### Xcode ###
 # Xcode
@@ -33,9 +57,18 @@ xcuserdata/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
+Example/*.xcodeproj/*
+Example/!*.xcodeproj/project.pbxproj
+Example/!*.xcodeproj/xcshareddata/
+Example/!*.xcworkspace/contents.xcworkspacedata
 
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 fastlane/report.xml
 fastlane/screenshots
+
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+Example/Pods/
